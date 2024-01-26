@@ -2,8 +2,8 @@
 A dictionary that will help with your scrabble game and your crossword skills
 
 This app will tell you everything you wanted (and didn't want) to know about any word you can think of. 
-- [x] How much is a word worth in Scrabble?
-- [x] Has a word appeared as a clue or an answer in a New York Times crossword?
+- [x] How much *is* 'Oxyphenbutazone' worth in Scrabble?
+- [x] When was 'repo' an answer to the New York Times crossword and what was its clue?
 - [x] How *do* you pronounce 'syllogism'?
 - [x] How many syllables are in *actually* in 'caramel'?
 
