@@ -1,6 +1,6 @@
 // Global variables
 const wordnikKey = config.wordnik_key
-const textInput = document.querySelector('#textInput')
+const searchBar = document.querySelector('#textInput')
 const submitButton = document.querySelector('#submitButton')
 const validScrabble = document.querySelector('#valid-word')
   validScrabble.style.display = ''
@@ -466,7 +466,7 @@ const stripXMLTags = str => str.replace(/<[^>]*>/g, '').replace('[', '').replace
 
   // Search word event listener
 submitButton.addEventListener('click', () => {
-  const input = textInput.value.toLowerCase()
+  const input = searchBar.value.toLowerCase()
 
   // Reset all fields
   validScrabble.style.display = 'none'
@@ -512,6 +512,12 @@ submitButton.addEventListener('click', () => {
   // step 10. etymologies
   etymologiesData.innerHTML = "No data available"
   etymologies(input)
+})
+
+textInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    submitButton.click()
+  }
 })
 
 // Random word event listener
