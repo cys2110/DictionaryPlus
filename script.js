@@ -1,5 +1,5 @@
 // Global variables
-const wordnikKey = 'mfyk32l6c0oquaq1pkq4f7ebzzqmqze47brhyp47eo0ouhxya'
+const wordnikKey = config.wordnik_key
 const textInput = document.querySelector('#textInput')
 const submitButton = document.querySelector('#submitButton')
 const validScrabble = document.querySelector('#valid-word')
@@ -13,6 +13,7 @@ const mainDisplay = document.querySelector('#main-display')
 const frequencyData = document.querySelector('#frequency')
 const phoneticsData = document.querySelector('#phonetics')
 const noPhonetics = document.querySelector('#no-phonetics')
+  noPhonetics.style.display = ''
 const etymologiesData = document.querySelector('#etymologies')
 const syllablesTotal = document.querySelector('#syllables-total')
 const syllablesData = document.querySelector('#syllables')
@@ -23,7 +24,10 @@ const relatedWords = document.querySelector('#related-words')
 const noRelated = document.querySelector('#no-related')
 const definitionsList = document.querySelector('#definitions')
 const noDefinitions = document.querySelector('#no-definitions')
+  noDefinitions.style.display = ''
 const anagrams = document.querySelector('#anagram')
+const noAnagrams = document.querySelector('#no-anagrams')
+  noAnagrams.style.display = ''
 
 // Scrabble value variables
 const scoreDisplay = document.querySelector('#score-display')
@@ -147,19 +151,19 @@ const anagram = async(input) => {
   let inputSplit = textInput.split("")
   for (let i=0; i < list.words.length; i++) {
     let scrabbleSplit = list.words[i].split("")
-    if (scrabbleSplit.length <= inputSplit.length && isSubset(inputSplit, scrabbleSplit)) {
+    if (scrabbleSplit.length <= inputSplit.length && isSubset(inputSplit, scrabbleSplit) && textInput !== list.words[i]) {
+      noAnagrams.style.display = 'none'
       let anagramList = anagrams.appendChild(document.createElement('li'))
       anagramList.innerText += `${list.words[i]}`
-    } else {
-      let anagramList = anagrams.appendChild(document.createElement('li'))
-      anagramList.innerText += `No Scrabble words can be made from these letters.`
     }
   }
 }
 
 // adapted from https://dev.to/smpnjn/javascript-check-if-an-array-is-a-subset-of-another-array-950
-const isSubset = (array1, array2) =>
-  array1.every((element) => array2.includes(element))
+const isSubset = (array1, array2) => {
+  array1.every((element) => 
+    {array2.includes(element)}
+)}
 
 const scrabbleValue = (input) => {
   let splitWord = input.split("")
@@ -198,20 +202,18 @@ const pronounciation = async(input) => {
 const syllables = async(input) => {
   let textInput = input.replace(/ /g, '%20')
   const response = (await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/hyphenation?useCanonical=false&limit=50&api_key=${wordnikKey}`)).data
+  let data = response.data
   if (response) {
-    syllablesTotal.innerHTML = response.length
-    for (let i=0; i < response.length; i++) {
-      syllablesData.innerHTML += `<td>${response[i].text}</td>`
-      if (response[i].type) {
-      stress.innerHTML += `<td>${response[i].type}</td>`
+    syllablesTotal.innerHTML = data.length
+    for (let i=0; i < data.length; i++) {
+      syllablesData.innerHTML += `<td>${data[i].text}</td>`
+      if (data[i].type) {
+      stress.innerHTML += `<td>${data[i].type}</td>`
       } else {
       stress.innerHTML += `<td></td>`
       }
     }
-  } else {
-    syllablesTotal.innerHTML = "No data available"
   }
-  
 }
 
 // Definitions
@@ -220,126 +222,126 @@ const definitions = async(input) => {
     method: 'GET',
     url: `https://wordsapiv1.p.rapidapi.com/words/${input}`,
     headers: {
-      'X-RapidAPI-Key': '02ee9aebffmsha05ba54c052ea01p1ea797jsned96038e11b8',
+      'X-RapidAPI-Key': config.wordsapi_key,
       'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
     }
   }
-  const response = (await axios.request(wordsApi)).data.results
+  const response = await axios.request(wordsApi)
+  let data = response.data.results
   if (response) {
-    for (let i=0; i < response.length; i++) {
+    noDefinitions.style.display = 'none'
+    for (let i=0; i < data.length; i++) {
       const definition = definitionsList.appendChild(document.createElement('li'))
-      definition.innerHTML = `${response[i].definition} (<em>${response[i].partOfSpeech}</em>)`
-      if (response[i].typeOf) {
+      definition.innerHTML = `${data[i].definition} (<em>${data[i].partOfSpeech}</em>)`
+      if (data[i].typeOf) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} is a type of:`
-        for (let n=0; n < response[i].typeOf.length; n++) {
+        for (let n=0; n < data[i].typeOf.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].typeOf[n]
+          details.innerHTML = data[i].typeOf[n]
         }
       }
-      if (response[i].hasTypes) {
+      if (data[i].hasTypes) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} is has the following types:`
-        for (let n=0; n < response[i].hasTypes.length; n++) {
+        for (let n=0; n < data[i].hasTypes.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].hasTypes[n]
+          details.innerHTML = data[i].hasTypes[n]
         }
       }
-      if (response[i].partOf) {
+      if (data[i].partOf) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} is a part of:`
-        for (let n=0; n < response[i].partOf.length; n++) {
+        for (let n=0; n < data[i].partOf.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].partOf[n]
+          details.innerHTML = data[i].partOf[n]
         }
       }
-      if (response[i].hasParts) {
+      if (data[i].hasParts) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} has these parts:`
-        for (let n=0; n < response[i].hasParts.length; n++) {
+        for (let n=0; n < data[i].hasParts.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].hasParts[n]
+          details.innerHTML = data[i].hasParts[n]
         }
       }
-      if (response[i].instanceOf) {
+      if (data[i].instanceOf) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} is an instance of:`
-        for (let n=0; n < response[i].instanceOf.length; n++) {
+        for (let n=0; n < data[i].instanceOf.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].instanceOf[n]
+          details.innerHTML = data[i].instanceOf[n]
         }
       }
-      if (response[i].hasInstances) {
+      if (data[i].hasInstances) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} has the following instances:`
-        for (let n=0; n < response[i].hasInstances.length; n++) {
+        for (let n=0; n < data[i].hasInstances.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].hasInstances[n]
+          details.innerHTML = data[i].hasInstances[n]
         }
       }
-      if (response[i].memberOf) {
+      if (data[i].memberOf) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} is a member of:`
-        for (let n=0; n < response[i].memberOf.length; n++) {
+        for (let n=0; n < data[i].memberOf.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].memberOf[n]
+          details.innerHTML = data[i].memberOf[n]
         }
       }
-      if (response[i].hasMembers) {
+      if (data[i].hasMembers) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} has the following members:`
-        for (let n=0; n < response[i].hasMembers.length; n++) {
+        for (let n=0; n < data[i].hasMembers.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].hasMembers[n]
+          details.innerHTML = data[i].hasMembers[n]
         }
       }
-      if (response[i].substanceOf) {
+      if (data[i].substanceOf) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} is a substance of:`
-        for (let n=0; n < response[i].substanceOf.length; n++) {
+        for (let n=0; n < data[i].substanceOf.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].substanceOf[n]
+          details.innerHTML = data[i].substanceOf[n]
         }
       }
-      if (response[i].hasSubstances) {
+      if (data[i].hasSubstances) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} has the following substances:`
-        for (let n=0; n < response[i].hasSubstances.length; n++) {
+        for (let n=0; n < data[i].hasSubstances.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].hasSubstances[n]
+          details.innerHTML = data[i].hasSubstances[n]
         }
       }
-      if (response[i].inCategory) {
+      if (data[i].inCategory) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} is a category of:`
-        for (let n=0; n < response[i].inCategory.length; n++) {
+        for (let n=0; n < data[i].inCategory.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].inCategory[n]
+          details.innerHTML = data[i].inCategory[n]
         }
       }
-      if (response[i].hasCategories) {
+      if (data[i].hasCategories) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
         summary.innerHTML = `${input} has these categories:`
-        for (let n=0; n < response[i].hasCategories.length; n++) {
+        for (let n=0; n < data[i].hasCategories.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = response[i].hasCategories[n]
+          details.innerHTML = data[i].hasCategories[n]
         }
       }
     }
-  } else {
-    noDefinitions.innerText = "No definitions available"
   }
 }
 
@@ -349,15 +351,14 @@ const frequency = async(input) => {
     method: 'GET',
     url: `https://wordsapiv1.p.rapidapi.com/words/${input}`,
     headers: {
-      'X-RapidAPI-Key': '02ee9aebffmsha05ba54c052ea01p1ea797jsned96038e11b8',
+      'X-RapidAPI-Key': config.wordsapi_key,
       'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
     }
   }
-  const response = (await axios.request(wordsApi)).data.frequency
+  const response = await axios.request(wordsApi)
+  const data = response.data.frequency
   if (response) {
-    frequencyData.innerHTML = `${response}/10`
-  } else {
-    frequencyData.innerHTML = "No data available"
+    frequencyData.innerHTML = `${data}/10`
   }
 }
 
@@ -367,76 +368,74 @@ const phonetics = async(input) => {
     method: 'GET',
     url: `https://lingua-robot.p.rapidapi.com/language/v1/entries/en/${input}`,
     headers: {
-      'X-RapidAPI-Key': '02ee9aebffmsha05ba54c052ea01p1ea797jsned96038e11b8',
+      'X-RapidAPI-Key': config.lingua_key,
       'X-RapidAPI-Host': 'lingua-robot.p.rapidapi.com'
     }
   }
-  const response = (await axios.request(linguaRobot)).data.entries['0'].pronunciations
+  const response = await axios.request(linguaRobot)
+  const data = response.data.entries['0'].pronunciations
   if (response) {
-    for (let i=0; i < response.length; i++) {
+    noPhonetics.style.display = 'none'
+    for (let i=0; i < data.length; i++) {
       const phoneticsTable = phoneticsData.appendChild(document.createElement('tr'))
-      phoneticsTable.innerHTML = `<td>${response[i].transcriptions[0].transcription}</td><td>${response[i].context.regions['0']}</td><td>${response[i].transcriptions[0].notation}</td>`
+      phoneticsTable.innerHTML = `<td>${data[i].transcriptions[0].transcription}</td><td>${data[i].context.regions['0']}</td><td>${data[i].transcriptions[0].notation}</td>`
     }
-  } else {
-    noPhonetics.innerText = "No data available"
-  } 
+  }
 }
 
 // Etymologies
 const etymologies = async(input) => {
   let textInput = input.replace(/ /g, '%20')
-  const response = (await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/etymologies?useCanonical=false&api_key=${wordnikKey}`)).data[0]
+  const response = await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/etymologies?useCanonical=false&api_key=${wordnikKey}`)
+  const data = response.data[0]
   if (response) {
-    etymologiesData.innerHTML = stripXMLTags(response)
-  } else {
-    etymologiesData.innerHTML = "No data available"
+    etymologiesData.innerHTML = stripXMLTags(data)
   }
 }
 
 // Phrases
 const phrases = async(input) => {
   let textInput = input.replace(/ /g, '%20')
-  const response = (await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/phrases?limit=5&useCanonical=false&api_key=${wordnikKey}`)).data
+  const response = await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/phrases?limit=5&useCanonical=false&api_key=${wordnikKey}`)
+  const data = response.data
   if (response) {
-    for (let i=0; i < response.length; i++) {
-      phrasesData.innerHTML += `<li>${response[i].gram1} ${response[i].gram2}</li>`
+    for (let i=0; i < data.length; i++) {
+      phrasesData.innerHTML += `<li>${data[i].gram1} ${data[i].gram2}</li>`
+      noPhrases.innerHTML = ''
     }
-  } else {
-    noPhrases.innerHTML = `There are no phrases using ${input}`
-  } 
+  }
 }
 
 // Related Words
 const related = async(input) => {
   let textInput = input.replace(/ /g, '%20')
-  const response = (await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/relatedWords?useCanonical=false&limitPerRelationshipType=10&api_key=${wordnikKey}
-  `)).data
+  const response = await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/relatedWords?useCanonical=false&limitPerRelationshipType=10&api_key=${wordnikKey}`)
+  const data = response.data
   if (response) {
-    for (let i=0; i < response.length; i++) {
-      if (response[i].relationshipType === 'antonym') {
+    noRelated.innerHTML = ''
+    for (let i=0; i < data.length; i++) {
+      if (data[i].relationshipType === 'antonym') {
         relatedWords.innerHTML += `<dt>Antonyms</dt>`
-        for (let n=0; n < response[i].words.length; n++) {
-          relatedWords.innerHTML += `<dd>${response[i].words[n]}</dd>`
+        for (let n=0; n < data[i].words.length; n++) {
+          relatedWords.innerHTML += `<dd>${data[i].words[n]}</dd>`
         }
-      } else if (response[i].relationshipType === 'synonym') {
+      } else if (data[i].relationshipType === 'synonym') {
         relatedWords.innerHTML += `<dt>Synonyms</dt>`
-        for (let n=0; n < response[i].words.length; n++) {
-          relatedWords.innerHTML += `<dd>${response[i].words[n]}</dd>`
+        for (let n=0; n < data[i].words.length; n++) {
+          relatedWords.innerHTML += `<dd>${data[i].words[n]}</dd>`
         }
-      } else if (response[i].relationshipType === 'same-context') {
+      } else if (data[i].relationshipType === 'same-context') {
         relatedWords.innerHTML += `<dt>Words used in the same context</dt>`
-        for (let n=0; n < response[i].words.length; n++) {
-          relatedWords.innerHTML += `<dd>${response[i].words[n]}</dd>`
+        for (let n=0; n < data[i].words.length; n++) {
+          relatedWords.innerHTML += `<dd>${data[i].words[n]}</dd>`
         }
-      } else if (response[i].relationshipType === 'rhyme') {
+      } else if (data[i].relationshipType === 'rhyme') {
         relatedWords.innerHTML += `<dt>Rhymes</dt>`
-        for (let n=0; n < response[i].words.length; n++) {
-          relatedWords.innerHTML += `<dd>${response[i].words[n]}</dd>`
+        for (let n=0; n < data[i].words.length; n++) {
+          relatedWords.innerHTML += `<dd>${data[i].words[n]}</dd>`
         }
       }
     }
-  } else {
-    noRelated.innerText = `There are no words related to ${input}`
   }
 }
 
@@ -450,12 +449,12 @@ const random = async() => {
     method: 'GET',
     url: `https://wordsapiv1.p.rapidapi.com/words/${list.words[randomNumber]}`,
     headers: {
-      'X-RapidAPI-Key': '02ee9aebffmsha05ba54c052ea01p1ea797jsned96038e11b8',
+      'X-RapidAPI-Key': config.wordsapi_key,
       'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
     }
   }
   const definitionResponse = (await axios.request(wordsApi)).data.results
-  randomDefinition.innerHTML = definitionResponse[0].definition
+  randomDefinition.innerHTML = definitionResponse['0'].definition
 }
 
 // random()
@@ -481,70 +480,100 @@ submitButton.addEventListener('click', () => {
   // step 1. check if valid scrabble word
   validScrabbleWord(input)
   // step 2. scrabble anagram
+  noAnagrams.style.display = ''
   removeChildNodes(anagrams)
   anagram(input)
   // step 3. pronounciation audio
-  // pronounciation(input)
+  pronounciation(input)
   // step 4. syllables
-  // syllables(input)
+  syllablesTotal.innerHTML = "No data available"
+  syllablesData.innerHTML = ''
+  stress.innerHTML = ''
+  syllables(input)
   // step 5. frequency
-  // frequency(input)
+  frequencyData.innerHTML = "No data available"
+  frequency(input)
   // step 6. phonetics
-  // removeChildNodes(phoneticsData)
-  // phonetics(input)
+  removeChildNodes(phoneticsData)
+  noPhonetics.style.display = ''
+  phonetics(input)
   // step 7. definitions
-  // removeChildNodes(definitionsList)
-  // definitions(input)
+  removeChildNodes(definitionsList)
+  noDefinitions.style.display = ''
+  definitions(input)
   // step 8. Phrases
-  // removeChildNodes(phrasesData)
-  // phrases(input)
+  noPhrases.innerHTML = `There are no phrases using "${input}"`
+  removeChildNodes(phrasesData)
+  phrases(input)
   // step 9. related words
-  // removeChildNodes(relatedWords)
-  // related(input)
+  noRelated.innerHTML = `There are no words related to "${input}"`
+  removeChildNodes(relatedWords)
+  related(input)
   // step 10. etymologies
-  // etymologies(input)
+  etymologiesData.innerHTML = "No data available"
+  etymologies(input)
 })
 
 // Random word event listener
-// randomWord.addEventListener('click', () => {
-//   let input = randomWord.innerText
-//   random()
-//   validScrabbleWord(input)
-//   removeChildNodes(anagrams)
-//   anagram(input)
-//   pronounciation(input)
-//   syllables(input)
-//   frequency(input)
-//   removeChildNodes(phoneticsData)
-//   phonetics(input)
-//   removeChildNodes(definitionsList)
-//   definitions(input)
-//   removeChildNodes(phrasesData)
-//   phrases(input)
-//   removeChildNodes(relatedWords)
-//   related(input)
-//   etymologies(input)
-// })
+randomWord.addEventListener('click', () => {
+  let input = randomWord.innerText
+  random()
+  validScrabbleWord(input)
+  noAnagrams.style.display = ''
+  removeChildNodes(anagrams)
+  anagram(input)
+  pronounciation(input)
+  syllablesTotal.innerHTML = "No data available"
+  syllablesData.innerHTML = ''
+  stress.innerHTML = ''
+  syllables(input)
+  frequencyData.innerHTML = "No data available"
+  frequency(input)
+  noPhonetics.style.display = ''
+  removeChildNodes(phoneticsData)
+  phonetics(input)
+  noDefinitions.style.display = ''
+  removeChildNodes(definitionsList)
+  definitions(input)
+  noPhrases.innerHTML = `There are no phrases using "${input}"`
+  removeChildNodes(phrasesData)
+  phrases(input)
+  noRelated.innerHTML = `There are no words related to "${input}"`
+  removeChildNodes(relatedWords)
+  related(input)
+  etymologiesData.innerHTML = "No data available"
+  etymologies(input)
+})
 
 // Scrabble list event listener
-// for (let i=0; i < highScorers.length; i++) {
-//   highScorers[i].addEventListener('click', () => {
-//     let input = highScorers[i].innerText
-//     random()
-//     validScrabbleWord(input)
-//     removeChildNodes(anagrams)
-//     anagram(input)
-//     pronounciation(input)
-//     syllables(input)
-//     frequency(input)
-//     removeChildNodes(phoneticsData)
-//     phonetics(input)
-//     removeChildNodes(definitionsList)
-//     definitions(input)
-//     removeChildNodes(phrasesData)
-//     phrases(input)
-//     removeChildNodes(relatedWords)
-//     related(input)
-//     etymologies(input)
-//   })
-// }
+for (let i=0; i < highScorers.length; i++) {
+  highScorers[i].addEventListener('click', () => {
+    let input = highScorers[i].innerText
+    random()
+    validScrabbleWord(input)
+    removeChildNodes(anagrams)
+    noAnagrams.style.display = ''
+    anagram(input)
+    pronounciation(input)
+    syllablesTotal.innerHTML = "No data available"
+    syllablesData.innerHTML = ''
+    stress.innerHTML = ''
+    syllables(input)
+    frequencyData.innerHTML = "No data available"
+    frequency(input)
+    removeChildNodes(phoneticsData)
+    noPhonetics.style.display = ''
+    phonetics(input)
+    removeChildNodes(definitionsList)
+    noDefinitions.style.display = ''
+    definitions(input)
+    removeChildNodes(phrasesData)
+    noPhrases.innerHTML = `There are no phrases using "${input}"`
+    phrases(input)
+    removeChildNodes(relatedWords)
+    noRelated.innerHTML = `There are no words related to "${input}"`
+    related(input)
+    etymologiesData.innerHTML = "No data available"
+    etymologies(input)
+  })
+}

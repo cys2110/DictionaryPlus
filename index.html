@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css" >
     <script src="https://kit.fontawesome.com/146bb2ac16.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="config.js"></script>
     <script defer src="script.js"></script>
     <title>DictionaryPlus</title>
     <link rel="icon" type="image/x-icon" href="/favicon.png">
@@ -14,11 +15,12 @@
 <body>
     <input id="textInput" type="text" placeholder="Search word" />
     <button id="submitButton">Go</button>
-    <div id="valid-word">VALID SCRABBLE WORD</div>
+    <div id="valid-word">This is a <span class="valid">VALID</span> Scrabble word</div>
     <div id="score-display">This word is worth <span id="scrabble-value"></span> points.</div>
-    <div id="invalid-word">INVALID SCRABBLE WORD</div>
+    <div id="invalid-word">This is an <span class="invalid">INVALID</span> Scrabble word</div>
     <div>
         <h3>Other Possible Scrabble Words</h3>
+        <p id="no-anagrams">No other words can be made with these letters</p>
         <ul id="anagram"></ul>
     </div>
     <a href="" id="audio" target="_blank"><i class="fa-solid fa-volume-high"></i></a>
@@ -37,7 +39,7 @@
         </div>
         <div id="phonetics-section">
             <h3>Phonetics</h3>
-            <p id="no-phonetics"></p>
+            <p id="no-phonetics">No data available</p>
             <table>
                 <thead>
                     <tr>
@@ -66,7 +68,7 @@
         </div>
         <div id="definitions-section">
             <h3>Definitions</h3>
-            <p id="no-definitions"></p>
+            <p id="no-definitions">No definitions available</p>
             <ol id="definitions"></ol>
         </div>
     </div>
