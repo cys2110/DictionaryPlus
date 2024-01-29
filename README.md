@@ -1,9 +1,9 @@
 # DictionaryPlus
-A dictionary that will help with your scrabble game and your crossword skills
+A dictionary to help you beat your nemesis at Scrabble
 
 This app will tell you everything you wanted (and didn't want) to know about any word you can think of. 
 - [x] How much *is* 'Oxyphenbutazone' worth in Scrabble?
-- [x] When was 'repo' an answer to the New York Times crossword and what was its clue?
+- [x] What *other* words can you make from 'quipped'?
 - [x] How *do* you pronounce 'syllogism'?
 - [x] How many syllables are *actually* in 'caramel'?
 
@@ -13,7 +13,6 @@ This app will tell you everything you wanted (and didn't want) to know about any
 - [Lingua Robot](https://www.linguarobot.io/)
 - [Free Dictionary](https://dictionaryapi.dev/)
 - [Words API](https://www.wordsapi.com/docs/#introduction)
-- [NYT Crosswords](https://github.com/doshea/nyt_crosswords?tab=readme-ov-file)
 - [Wordnik](https://raw.githubusercontent.com/wordnik/wordlist/main/wordlist-20210729.txt)
 
 ##### External Links
