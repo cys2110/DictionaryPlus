@@ -1,3 +1,78 @@
+body {
+    background-color: rgb(240, 237, 213);
+    font-family: 'Ruda', sans-serif;
+}
+
+.header {
+    background-color: rgb(70, 18, 229);
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    margin: 0;
+    margin-bottom: 20px;
+    color: rgb(244, 231, 189);
+}
+
+.inputs {
+    margin: 10px auto;
+    width: 100vw;
+    justify-content: center;
+}
+
+#textInput {
+    width: 90vw;
+    height: 2rem
+}
+
+#submitButton {
+    height: 2.4rem;
+    width: 5vw;
+    background-color: rgb(70, 18, 229);
+    color: white;
+}
+
+#main-display {
+    display: flex;
+    justify-content: space-between;
+}
+
 .valid {
-    color: rgb(110, 247, 83)
+    color: rgb(82, 187, 61)
+}
+
+.invalid {
+    color: rgb(210, 49, 49);
+}
+
+#scrabble-value {
+    font-weight: 900;
+}
+
+aside {
+    justify-self: flex-end;
+    padding: 10px;
+    margin: 5%;
+}
+
+#random-generated, #scrabble-list {
+    justify-content: center;
+    border: 5px solid rgb(97, 185, 240);
+    padding: 10px;
+    border-radius: 10%;
+    margin: 20px;
+}
+
+#random-generated {
+    text-align: center;
+}
+
+#random-word {
+    color: rgb(10, 113, 177);
+    cursor: pointer;
+}
+
+.high-scorer {
+    line-height: 2em;
+    cursor: pointer;
+    text-decoration: underline dashed;
 }

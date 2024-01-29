@@ -26,6 +26,7 @@ const definitionsList = document.querySelector('#definitions')
 const noDefinitions = document.querySelector('#no-definitions')
   noDefinitions.style.display = ''
 const anagrams = document.querySelector('#anagram')
+const anagramHeading = document.querySelector('anagram-heading')
 const noAnagrams = document.querySelector('#no-anagrams')
   noAnagrams.style.display = ''
 
@@ -480,6 +481,7 @@ submitButton.addEventListener('click', () => {
   // step 1. check if valid scrabble word
   validScrabbleWord(input)
   // step 2. scrabble anagram
+  anagramHeading.innerHTML = `These playable words can be made from ${input.toUpperCase()}`
   noAnagrams.style.display = ''
   removeChildNodes(anagrams)
   anagram(input)
@@ -514,6 +516,7 @@ submitButton.addEventListener('click', () => {
   etymologies(input)
 })
 
+// adpted from https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
 textInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     submitButton.click()
