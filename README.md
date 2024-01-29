@@ -5,7 +5,7 @@ This app will tell you everything you wanted (and didn't want) to know about any
 - [x] How much *is* 'Oxyphenbutazone' worth in Scrabble?
 - [x] When was 'repo' an answer to the New York Times crossword and what was its clue?
 - [x] How *do* you pronounce 'syllogism'?
-- [x] How many syllables are in *actually* in 'caramel'?
+- [x] How many syllables are *actually* in 'caramel'?
 
 ### Credits
 
@@ -14,6 +14,7 @@ This app will tell you everything you wanted (and didn't want) to know about any
 - [Free Dictionary](https://dictionaryapi.dev/)
 - [Words API](https://www.wordsapi.com/docs/#introduction)
 - [NYT Crosswords](https://github.com/doshea/nyt_crosswords?tab=readme-ov-file)
+- [Wordnik](https://raw.githubusercontent.com/wordnik/wordlist/main/wordlist-20210729.txt)
 
 ##### External Links
 - [Merriam-Webster Scrabble Dictionary](https://scrabble.merriam.com/)

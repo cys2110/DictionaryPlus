@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" >
+    <script src="https://kit.fontawesome.com/146bb2ac16.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="script.js"></script>
+    <title>DictionaryPlus</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <!--favicon from https://pixabay.com/vectors/book-bookmark-education-reading-41203/-->
+</head>
+<body>
+    <input id="textInput" type="text" placeholder="Search word" />
+    <button id="submitButton">Go</button>
+    <div id="valid-word">VALID SCRABBLE WORD</div>
+    <div id="score-display">This word is worth <span id="scrabble-value"></span> points.</div>
+    <div id="invalid-word">INVALID SCRABBLE WORD</div>
+    <div>
+        <h3>Other Possible Scrabble Words</h3>
+        <ul id="anagram"></ul>
+    </div>
+    <a href="" id="audio" target="_blank"><i class="fa-solid fa-volume-high"></i></a>
+    <div id="main-display">
+        <div id="syllables-section">
+            <h3>Syllables</h3>
+            <p id="syllables-total"></p>
+            <table>
+                <tr id="syllables"></tr>
+                <tr id="stress"></tr>
+            </table>
+        </div>
+        <div id="frequency-section">
+            <h3>Frequency Rating</h3>
+            <p id="frequency"></p>
+        </div>
+        <div id="phonetics-section">
+            <h3>Phonetics</h3>
+            <p id="no-phonetics"></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Transcription</th>
+                        <th>Region</th>
+                        <th>Notation</th>
+                    </tr>
+                </thead>
+                <tbody id="phonetics"></tbody>
+            </table>
+        </div>
+        <div id="etymologies-section">
+            <h3>Etymologies</h3>
+            <p id="etymologies"></p>
+        </div>
+        <div id="phrases-section">
+            <h3>Phrases</h3>
+            <p id="no-phrases"></p>
+            <ul id="phrases"></ul>
+        </div>
+        <div id="related-words-section">
+            <h3>Related Words</h3>
+            <p id="no-related"></p>
+            <dl id="related-words">
+            </dl>
+        </div>
+        <div id="definitions-section">
+            <h3>Definitions</h3>
+            <p id="no-definitions"></p>
+            <ol id="definitions"></ol>
+        </div>
+    </div>
+    <aside>
+        <div id="random-generated">
+            <h4 id="random-word"></h4>
+            <p id="random-definition"></p>
+        </div>
+        <div id="scrabble-list">
+            <h4>High Scoring Scrabble Words</h4>
+            <ol>
+                <li class="high-scorer">quixotic</li>
+                <li class="high-scorer">maximize</li>
+                <li class="high-scorer">oxidized</li>
+                <li class="high-scorer">wheezily</li>
+                <li class="high-scorer">equalize</li>
+                <li class="high-scorer">chutzpah</li>
+                <li class="high-scorer">exorcize</li>
+                <li class="high-scorer">whizbang</li>
+                <li class="high-scorer">jezebel</li>
+                <li class="high-scorer">squeeze</li>
+                <li class="high-scorer">jukebox</li>
+                <li class="high-scorer">flapjack</li>
+                <li class="high-scorer">quickly</li>
+                <li class="high-scorer">cazique</li>
+                <li class="high-scorer">quantize</li>
+                <li class="high-scorer">schmalzy</li>
+                <li class="high-scorer">highjack</li>
+                <li class="high-scorer">quetzal</li>
+                <li class="high-scorer">pirozhki</li>
+                <li class="high-scorer">zymurgy</li>
+            </ol>
+        </div>
+    </aside>
+</body>
+</html>
