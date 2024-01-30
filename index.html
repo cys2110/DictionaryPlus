@@ -24,33 +24,45 @@
         <input id="textInput" type="text" placeholder="Search word" />
         <button id="submitButton">Go</button>
     </div>
+    <div class="navbar">
+        <ul>
+            <li><a href="">Scrabble</a></li>
+            <li><a href="">Pronounciation</a></li>
+            <li><a href="">Frequency</a></li>
+            <li><a href="">Definitions</a></li>
+            <li><a href="">Etymology</a></li>
+            <li><a href="">Related Words</a></li>
+        </ul>
+    </div>
     <div id="main-display">
+        
+        <div id="home">
+            <p>Have you ever wanted to know:
+                <ul>
+                    <li>How much 'Oxyphenbutazone' is worth in Scrabble?</li>
+                    <li>How you pronounce 'syllogism'?</li>
+                    <li>How many syllables are in caramel? <small>Hint: There are 3. Don't @ us.</small></li>
+                    <li>What other words are related to 'quip'?</li>
+                </ul>
+            </p>
+        </div>
         <div id="outputs">
     <div id="valid-word">This is a <span class="valid">VALID</span> Scrabble word.</div>
     <div id="score-display">This word is worth <span id="scrabble-value"></span> points.</div>
     <div id="invalid-word">This is an <span class="invalid">INVALID</span> Scrabble word.</div>
-    <div>
-        <h3 id="anagram-heading"></h3>
-        <p id="no-anagrams">No other words can be made with these letters</p>
-        <ul id="anagram"></ul>
-    </div>
     <a href="" id="audio" target="_blank"><i class="fa-solid fa-volume-high"></i></a>
-        <div id="syllables-section">
+        <div id="pronounciation">
             <h3>Syllables</h3>
             <p id="syllables-total"></p>
             <table id="syllables-table">
                 <tr id="syllables"></tr>
             </table>
-        </div>
-        <div id="frequency-section">
             <h3>Frequency Rating</h3>
             <dl id="frequency">
             </dl>
-        </div>
-        <div id="phonetics-section">
             <h3>Phonetics</h3>
             <p id="no-phonetics">No data available</p>
-            <table>
+            <table id="phonetics-table">
                 <thead>
                     <tr>
                         <th>Transcription</th>
@@ -61,8 +73,13 @@
                 <tbody id="phonetics"></tbody>
             </table>
         </div>
+        <div id="definitions-section">
+            <h3>Definitions</h3>
+            <p id="no-definitions">No definitions available</p>
+            <ol id="definitions"></ol>
+        </div>
         <div id="etymologies-section">
-            <h3>Etymologies</h3>
+            <h3>Etymology</h3>
             <p id="etymologies"></p>
         </div>
         <div id="related-words-section">
@@ -91,11 +108,6 @@
             <details id="in-region"><summary id="in-region-heading"></summary></details>
             <details id="region-of"><summary id="region-of-heading"></summary></details>
             <details id="pertains-to"><summary id="pertains-to-heading"></summary></details>
-        </div>
-        <div id="definitions-section">
-            <h3>Definitions</h3>
-            <p id="no-definitions">No definitions available</p>
-            <ol id="definitions"></ol>
         </div>
     </div>
     <aside>
