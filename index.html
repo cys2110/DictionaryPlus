@@ -24,14 +24,13 @@
         <input id="textInput" type="text" placeholder="Search word" />
         <button id="submitButton">Go</button>
     </div>
-    <div class="navbar">
+    <div id="navbar">
         <ul>
-            <li><a href="">Scrabble</a></li>
-            <li><a href="">Pronounciation</a></li>
-            <li><a href="">Frequency</a></li>
-            <li><a href="">Definitions</a></li>
-            <li><a href="">Etymology</a></li>
-            <li><a href="">Related Words</a></li>
+            <li><a href="#pronounciation-heading">Pronounciation</a></li>
+            <li><a href="#frequency-heading">Frequency</a></li>
+            <li><a href="#phonetics-heading">Definitions</a></li>
+            <li><a href="#etymologies-section">Etymology</a></li>
+            <li><a href="#related-words-section">Related Words</a></li>
         </ul>
     </div>
     <div id="main-display">
@@ -52,15 +51,15 @@
     <div id="invalid-word">This is an <span class="invalid">INVALID</span> Scrabble word.</div>
     <a href="" id="audio" target="_blank"><i class="fa-solid fa-volume-high"></i></a>
         <div id="pronounciation">
-            <h3>Syllables</h3>
+            <h3 id="pronounciation-heading">Syllables</h3>
             <p id="syllables-total"></p>
             <table id="syllables-table">
                 <tr id="syllables"></tr>
             </table>
-            <h3>Frequency Rating</h3>
+            <h3 id="frequency-heading">Frequency Rating<sup><a href="#fn1" id="ref1">1</a></sup></h3>
             <dl id="frequency">
             </dl>
-            <h3>Phonetics</h3>
+            <h3 id="phonetics-heading">Phonetics</h3>
             <p id="no-phonetics">No data available</p>
             <table id="phonetics-table">
                 <thead>
@@ -83,7 +82,7 @@
             <p id="etymologies"></p>
         </div>
         <div id="related-words-section">
-            <h3>Related Words</h3>
+            <h3>Related Words<sup><a href="#fn2" id="ref2">2</a></sup></h3>
             <p id="no-related"></p>
             <details id="synonyms"><summary id="synonyms-heading"></summary></details>
             <details id="antonyms"><summary id="antonyms-heading"></summary></details>
@@ -141,6 +140,11 @@
             </ol>
         </div>
     </aside>
+</div>
+<hr>
+<div id="footnotes">
+<p><sup><a href="#ref1" id="fn1">1.</a> <strong>Zipf</strong> is a log10 number ranging from 1 to 7 representing the frequency of the word. A higher number means the words is used more frequently. <br><strong>PerMillion</strong> is the number of times the word is likely to appear in any English corpus, per million words.<br> <strong>Diversity</strong> is a scale ranging from 0-1 that represents the likelihood the word will appear in a document that is part of a corpus. A greater diversity score may be related to how fast a word can be recalled by a person.</sup></p>
+<p><sup><a href="#ref2" id="fn2">2.</a> <strong>Synonyms</strong> are words that can be interchanged for the original word in the same context. <br><strong>Antonyms</strong> are words that have the opposite context of the original word.<br> <strong>Hypernyms</strong> are words that are more generic than the original word.<br> <strong>Hyponyms</strong> are words that are more specific than the original word.<br> <strong>Holonyms</strong> are larger wholes to which this word belongs.<br> <strong>Meronyms</strong> are words that are part of the original word.</sup></p>
 </div>
 </body>
 </html>
