@@ -337,202 +337,201 @@ const related = async(input) => {
   }
   const response = await axios.request(wordsApi)
   let data = response.data.results
-    for (let i=0; i < data.length; i++) {
-      if (data[i].synonyms) {
-        synonymsHeading.style.display = ''
-        synonymsHeading.innerHTML = `Synonyms of "${input.toUpperCase()}"`
-        for (let n=0; n < data[i].synonyms.length; n++) {
-          const details = synonyms.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].synonyms[n]
-        }
-      }
-      if (data[i].antonyms) {
-        antonymsHeading.style.display = ''
-        antonymsHeading.innerHTML = `Antonyms of "${input.toUpperCase()}"`
-        for (let n=0; n < data[i].antonyms.length; n++) {
-          const details = antonyms.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].antonyms[n]
-        }
-      }
-      if (data[i].typeOf) {
-        typeOfHeading.style.display = ''
-        typeOfHeading.innerHTML = `Hypernyms of "${input.toUpperCase()}"`
-        for (let n=0; n < data[i].typeOf.length; n++) {
-          const details = typeOf.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].typeOf[n]
-        }
-      }
-      if (data[i].hasTypes) {
-        hasTypesHeading.style.display = ''
-        hasTypesHeading.innerHTML = `Hyponyms of "${input.toUpperCase()}"`
-        for (let n=0; n < data[i].hasTypes.length; n++) {
-          const details = hasTypes.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].hasTypes[n]
-        }
-      }
-      if (data[i].partOf) {
-        partOfHeading.style.display = ''
-        partOfHeading.innerHTML = `Holonyms of "${input.toUpperCase()}"`
-        for (let n=0; n < data[i].partOf.length; n++) {
-          const details = partOf.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].partOf[n]
-        }
-      }
-      if (data[i].hasParts) {
-        hasPartsHeading.style.display = ''
-        hasPartsHeading.innerHTML = `Meronyms of "${input.toUpperCase()}"`
-        for (let n=0; n < data[i].hasParts.length; n++) {
-          const details = hasParts.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].hasParts[n]
-        }
-      }
-      if (data[i].instanceOf) {
-        instanceOfHeading.style.display = ''
-        instanceOfHeading.innerHTML = `"${input.toUpperCase()}" is an example of:`
-        for (let n=0; n < data[i].instanceOf.length; n++) {
-          const details = instanceOf.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].instanceOf[n]
-        }
-      }
-      if (data[i].hasInstances) {
-        hasInstancesHeading.style.display = ''
-        hasInstancesHeading.innerHTML = `Examples of "${input.toUpperCase()}"`
-        for (let n=0; n < data[i].hasInstances.length; n++) {
-          const details = hasInstances.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].hasInstances[n]
-        }
-      }
-      if (data[i].similarTo) {
-        similarToHeading.style.display = ''
-        similarToHeading.innerHTML = `"${input.toUpperCase()}" is similar to:`
-        for (let n=0; n < data[i].similarTo.length; n++) {
-          const details = similarTo.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].similarTo[n]
-        }
-      }
-      if (data[i].also) {
-        alsoHeading.style.display = ''
-        alsoHeading.innerHTML = `Phrases to which "${input.toUpperCase()}" belongs`
-        for (let n=0; n < data[i].also.length; n++) {
-          const details = also.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].also[n]
-        }
-      }
-      if (data[i].entails) {
-        entailsHeading.style.display = ''
-        entailsHeading.innerHTML = `Words implied by "${input.toUpperCase()}"`
-        for (let n=0; n < data[i].entails.length; n++) {
-          const details = entails.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].entails[n]
-        }
-      }
-      if (data[i].memberOf) {
-        memberOfHeading.style.display = ''
-        memberOfHeading.innerHTML = `"${input.toUpperCase()}" is a member of:`
-        for (let n=0; n < data[i].memberOf.length; n++) {
-          const details = memberOf.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].memberOf[n]
-        }
-      }
-      if (data[i].hasMembers) {
-        hasMembersHeading.style.display = ''
-        hasMembersHeading.innerHTML = `"${input.toUpperCase()}" has the following members:`
-        for (let n=0; n < data[i].hasMembers.length; n++) {
-          const details = hasMembers.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].hasMembers[n]
-        }
-      }
-      if (data[i].substanceOf) {
-        substanceOfHeading.style.display = ''
-        substanceOfHeading.innerHTML = `"${input.toUpperCase()}" is a substance of:`
-        for (let n=0; n < data[i].substanceOf.length; n++) {
-          const details = substanceOf.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].substanceOf[n]
-        }
-      }
-      if (data[i].hasSubstances) {
-        hasSubstancesHeading.style.display = ''
-        hasSubstancesHeading.innerHTML = `Substances that are part of "${input.toUpperCase()}":`
-        for (let n=0; n < data[i].hasSubstances.length; n++) {
-          const details = hasSubstances.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].hasSubstances[n]
-        }
-      }
-      if (data[i].inCategory) {
-        inCategoryHeading.style.display = ''
-        inCategoryHeading.innerHTML = `"${input.toUpperCase()}" is a category of:`
-        for (let n=0; n < data[i].inCategory.length; n++) {
-          const details = inCategory.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].inCategory[n]
-        }
-      }
-      if (data[i].hasCategories) {
-        hasCategoriesHeading.style.display = ''
-        hasCategoriesHeading.innerHTML = `Categories of "${input.toUpperCase()}":`
-        for (let n=0; n < data[i].hasCategories.length; n++) {
-          const details = hasCategories.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].hasCategories[n]
-        }
-      }
-      if (data[i].usageOf) {
-        usageOfHeading.style.display = ''
-        usageOfHeading.innerHTML = `"${input.toUpperCase()}" is a domain usage of:`
-        for (let n=0; n < data[i].usageOf.length; n++) {
-          const details = usageOf.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].usageOf[n]
-        }
-      }
-      if (data[i].hasUsages) {
-        hasUsagesHeading.style.display = ''
-        hasUsagesHeading.innerHTML = `"${input.toUpperCase()}" has the following usages:`
-        for (let n=0; n < data[i].hasUsages.length; n++) {
-          const details = hasUsages.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].hasUsages[n]
-        }
-      }
-      if (data[i].inRegion) {
-        inRegionHeading.style.display = ''
-        inRegionHeading.innerHTML = `"${input.toUpperCase()}" is used in these regions:`
-        for (let n=0; n < data[i].inRegion.length; n++) {
-          const details = inRegion.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].inRegion[n]
-        }
-      }
-      if (data[i].regionOf) {
-        regionOfHeading.style.display = ''
-        regionOfHeading.innerHTML = `"${input.toUpperCase()}" is a region where these words are used:`
-        for (let n=0; n < data[i].regionOf.length; n++) {
-          const details = regionOf.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].regionOf[n]
-        }
-      }
-      if (data[i].pertainsTo) {
-        pertainsToHeading.style.display = ''
-        pertainsToHeading.innerHTML = `"${input.toUpperCase()}" is relevant to these words`
-        for (let n=0; n < data[i].pertainsTo.length; n++) {
-          const details = pertainsTo.appendChild(document.createElement('dd'))
-          details.innerHTML += data[i].pertainsTo[n]
-        }
-      }
-      const wordsApiRhymes = {
-        method: 'GET',
-        url: `https://wordsapiv1.p.rapidapi.com/words/${input}/rhymes`,
-        headers: {
-          'X-RapidAPI-Key': config.wordsapi_key,
-          'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
-        }
-      }
-      const rhymesApi = await axios.get(wordsApiRhymes)
-      let rhymesData = rhymesApi.rhymes.all
-      if (rhymesData) {
-        rhymes.style.display = ''
-        rhymesHeading.innerHTML = `${input.toUpperCase()} rhymes with:`
-        for (let i=0; i < rhymesData.length; i++) {
-          const details = rhymes.appendChild(document.createElement('dd'))
-          details.innerHTML += rhymesData[i]
-        }
+  synonymsHeading.innerHTML = `Synonyms of "${input.toUpperCase()}"`
+  for (let i=0; i < data.length; i++) {
+    if (data[i].synonyms) {
+      for (let n=0; n < data[i].synonyms.length; n++) {
+        const details = synonyms.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].synonyms[n]
       }
     }
+    if (data[i].antonyms) {
+      antonymsHeading.style.display = ''
+      antonymsHeading.innerHTML = `Antonyms of "${input.toUpperCase()}"`
+      for (let n=0; n < data[i].antonyms.length; n++) {
+        const details = antonyms.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].antonyms[n]
+      }
+    }
+    if (data[i].typeOf) {
+      typeOfHeading.style.display = ''
+      typeOfHeading.innerHTML = `Hypernyms of "${input.toUpperCase()}"`
+      for (let n=0; n < data[i].typeOf.length; n++) {
+        const details = typeOf.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].typeOf[n]
+      }
+    }
+    if (data[i].hasTypes) {
+      hasTypesHeading.style.display = ''
+      hasTypesHeading.innerHTML = `Hyponyms of "${input.toUpperCase()}"`
+      for (let n=0; n < data[i].hasTypes.length; n++) {
+        const details = hasTypes.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].hasTypes[n]
+      }
+    }
+    if (data[i].partOf) {
+      partOfHeading.style.display = ''
+      partOfHeading.innerHTML = `Holonyms of "${input.toUpperCase()}"`
+      for (let n=0; n < data[i].partOf.length; n++) {
+        const details = partOf.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].partOf[n]
+      }
+    }
+    if (data[i].hasParts) {
+      hasPartsHeading.style.display = ''
+      hasPartsHeading.innerHTML = `Meronyms of "${input.toUpperCase()}"`
+      for (let n=0; n < data[i].hasParts.length; n++) {
+        const details = hasParts.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].hasParts[n]
+      }
+    }
+    if (data[i].instanceOf) {
+      instanceOfHeading.style.display = ''
+      instanceOfHeading.innerHTML = `"${input.toUpperCase()}" is an example of:`
+      for (let n=0; n < data[i].instanceOf.length; n++) {
+        const details = instanceOf.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].instanceOf[n]
+      }
+    }
+    if (data[i].hasInstances) {
+      hasInstancesHeading.style.display = ''
+      hasInstancesHeading.innerHTML = `Examples of "${input.toUpperCase()}"`
+      for (let n=0; n < data[i].hasInstances.length; n++) {
+        const details = hasInstances.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].hasInstances[n]
+      }
+    }
+    if (data[i].similarTo) {
+      similarToHeading.style.display = ''
+      similarToHeading.innerHTML = `"${input.toUpperCase()}" is similar to:`
+      for (let n=0; n < data[i].similarTo.length; n++) {
+        const details = similarTo.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].similarTo[n]
+      }
+    }
+    if (data[i].also) {
+      alsoHeading.style.display = ''
+      alsoHeading.innerHTML = `Phrases to which "${input.toUpperCase()}" belongs`
+      for (let n=0; n < data[i].also.length; n++) {
+        const details = also.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].also[n]
+      }
+    }
+    if (data[i].entails) {
+      entailsHeading.style.display = ''
+      entailsHeading.innerHTML = `Words implied by "${input.toUpperCase()}"`
+      for (let n=0; n < data[i].entails.length; n++) {
+        const details = entails.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].entails[n]
+      }
+    }
+    if (data[i].memberOf) {
+      memberOfHeading.style.display = ''
+      memberOfHeading.innerHTML = `"${input.toUpperCase()}" is a member of:`
+      for (let n=0; n < data[i].memberOf.length; n++) {
+        const details = memberOf.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].memberOf[n]
+      }
+    }
+    if (data[i].hasMembers) {
+      hasMembersHeading.style.display = ''
+      hasMembersHeading.innerHTML = `"${input.toUpperCase()}" has the following members:`
+      for (let n=0; n < data[i].hasMembers.length; n++) {
+        const details = hasMembers.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].hasMembers[n]
+      }
+    }
+    if (data[i].substanceOf) {
+      substanceOfHeading.style.display = ''
+      substanceOfHeading.innerHTML = `"${input.toUpperCase()}" is a substance of:`
+      for (let n=0; n < data[i].substanceOf.length; n++) {
+        const details = substanceOf.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].substanceOf[n]
+      }
+    }
+    if (data[i].hasSubstances) {
+      hasSubstancesHeading.style.display = ''
+      hasSubstancesHeading.innerHTML = `Substances that are part of "${input.toUpperCase()}":`
+      for (let n=0; n < data[i].hasSubstances.length; n++) {
+        const details = hasSubstances.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].hasSubstances[n]
+      }
+    }
+    if (data[i].inCategory) {
+      inCategoryHeading.style.display = ''
+      inCategoryHeading.innerHTML = `"${input.toUpperCase()}" is a category of:`
+      for (let n=0; n < data[i].inCategory.length; n++) {
+        const details = inCategory.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].inCategory[n]
+      }
+    }
+    if (data[i].hasCategories) {
+      hasCategoriesHeading.style.display = ''
+      hasCategoriesHeading.innerHTML = `Categories of "${input.toUpperCase()}":`
+      for (let n=0; n < data[i].hasCategories.length; n++) {
+        const details = hasCategories.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].hasCategories[n]
+      }
+    }
+    if (data[i].usageOf) {
+      usageOfHeading.style.display = ''
+      usageOfHeading.innerHTML = `"${input.toUpperCase()}" is a domain usage of:`
+      for (let n=0; n < data[i].usageOf.length; n++) {
+        const details = usageOf.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].usageOf[n]
+      }
+    }
+    if (data[i].hasUsages) {
+      hasUsagesHeading.style.display = ''
+      hasUsagesHeading.innerHTML = `"${input.toUpperCase()}" has the following usages:`
+      for (let n=0; n < data[i].hasUsages.length; n++) {
+        const details = hasUsages.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].hasUsages[n]
+      }
+    }
+    if (data[i].inRegion) {
+      inRegionHeading.style.display = ''
+      inRegionHeading.innerHTML = `"${input.toUpperCase()}" is used in these regions:`
+      for (let n=0; n < data[i].inRegion.length; n++) {
+        const details = inRegion.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].inRegion[n]
+      }
+    }
+    if (data[i].regionOf) {
+      regionOfHeading.style.display = ''
+      regionOfHeading.innerHTML = `"${input.toUpperCase()}" is a region where these words are used:`
+      for (let n=0; n < data[i].regionOf.length; n++) {
+        const details = regionOf.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].regionOf[n]
+      }
+    }
+    if (data[i].pertainsTo) {
+      pertainsToHeading.style.display = ''
+      pertainsToHeading.innerHTML = `"${input.toUpperCase()}" is relevant to these words`
+      for (let n=0; n < data[i].pertainsTo.length; n++) {
+        const details = pertainsTo.appendChild(document.createElement('dd'))
+        details.innerHTML += data[i].pertainsTo[n]
+      }
+    }
+  }
+  const wordsApiRhymes = {
+    method: 'GET',
+    url: `https://wordsapiv1.p.rapidapi.com/words/${input}/rhymes`,
+    headers: {
+      'X-RapidAPI-Key': config.wordsapi_key,
+      'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+    }
+  }
+  const rhymesApi = await axios.request(wordsApiRhymes)
+  let rhymesData = rhymesApi.data.rhymes.all
+  if (rhymesData) {
+    rhymes.style.display = ''
+    rhymesHeading.innerHTML = `${input.toUpperCase()} rhymes with:`
+    for (let i=0; i < rhymesData.length; i++) {
+      const details = rhymes.appendChild(document.createElement('dd'))
+      details.innerHTML += rhymesData[i]
+    }
+  }
 }
 
 // Randomly generated word
@@ -598,7 +597,7 @@ submitButton.addEventListener('click', () => {
 })
 
 // adpted from https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
-textInput.addEventListener('keydown', (e) => {
+searchBar.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     submitButton.click()
   }
