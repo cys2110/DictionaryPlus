@@ -48,6 +48,18 @@ body {
     font-weight: 900;
 }
 
+#syllables-table {
+    border: none;
+    border-collapse: collapse;
+}
+
+#syllables-table td {
+    border-top: none;
+    border-bottom: none;
+    border-right: solid;
+    border-left: solid
+}
+
 aside {
     justify-self: flex-end;
     padding: 10px;

@@ -18,17 +18,58 @@ const etymologiesData = document.querySelector('#etymologies')
 const syllablesTotal = document.querySelector('#syllables-total')
 const syllablesData = document.querySelector('#syllables')
 const stress = document.querySelector('#stress')
-const phrasesData = document.querySelector('#phrases')
-const noPhrases = document.querySelector('#no-phrases')
 const relatedWords = document.querySelector('#related-words')
 const noRelated = document.querySelector('#no-related')
+const relatedSection = document.querySelector('#related-words-section')
+  const synonyms = document.querySelector('#synonyms')
+  const synonymsHeading = document.querySelector('#synonyms-heading')
+  const antonyms = document.querySelector('#antonyms')
+  const antonymsHeading = document.querySelector('#antonyms-heading')
+  const typeOf = document.querySelector('#type-of')
+  const typeOfHeading = document.querySelector('#type-of-heading')
+  const hasTypes = document.querySelector('#has-types')
+  const hasTypesHeading = document.querySelector('#has-types-heading')
+  const partOf = document.querySelector('#part-of')
+  const partOfHeading = document.querySelector('#part-of-heading')
+  const hasParts = document.querySelector('#has-parts')
+  const hasPartsHeading = document.querySelector('#has-parts-heading')
+  const instanceOf = document.querySelector('#instance-of')
+  const instanceOfHeading = document.querySelector('#instance-of-heading')
+  const hasInstances = document.querySelector('#has-instances')
+  const hasInstancesHeading = document.querySelector('#has-instances-heading')
+  const similarTo = document.querySelector('#similar-to')
+  const similarToHeading = document.querySelector('#similar-to-heading')
+  const also = document.querySelector('#also')
+  const alsoHeading = document.querySelector('#also-heading')
+  const entails = document.querySelector('#entails')
+  const entailsHeading = document.querySelector('#entails-heading')
+  const memberOf = document.querySelector('#member-of')
+  const memberOfHeading = document.querySelector('#member-of-heading')
+  const hasMembers = document.querySelector('#has-members')
+  const hasMembersHeading = document.querySelector('#has-members-heading')
+  const substanceOf = document.querySelector('#substance-of')
+  const substanceOfHeading = document.querySelector('#substance-of-heading')
+  const hasSubstances = document.querySelector('#has-substances')
+  const hasSubstancesHeading = document.querySelector('#has-substances-heading')
+  const inCategory = document.querySelector('#in-category')
+  const inCategoryHeading = document.querySelector('#in-category-heading')
+  const hasCategories = document.querySelector('#has-categories')
+  const hasCategoriesHeading = document.querySelector('#has-categories-heading')
+  const usageOf = document.querySelector('#usage-of')
+  const usageOfHeading = document.querySelector('#usage-of-heading')
+  const hasUsages = document.querySelector('#has-usages')
+  const hasUsagesHeading = document.querySelector('#has-usages-heading')
+  const inRegion = document.querySelector('#in-region')
+  const inRegionHeading = document.querySelector('#in-region-heading')
+  const regionOf = document.querySelector('#region-of')
+  const regionOfHeading = document.querySelector('#region-of-heading')
+  const pertainsTo = document.querySelector('#pertains-to')
+  const pertainsToHeading = document.querySelector('#pertains-to-heading')
+  const rhymes = document.querySelector('#rhymes')
+  const rhymesHeading = document.querySelector('#rhymes-heading')
 const definitionsList = document.querySelector('#definitions')
 const noDefinitions = document.querySelector('#no-definitions')
   noDefinitions.style.display = ''
-const anagrams = document.querySelector('#anagram')
-const anagramHeading = document.querySelector('anagram-heading')
-const noAnagrams = document.querySelector('#no-anagrams')
-  noAnagrams.style.display = ''
 
 // Scrabble value variables
 const scoreDisplay = document.querySelector('#score-display')
@@ -144,28 +185,6 @@ const validScrabbleWord = async(input) => {
   }
 }
 
-// Anagrams
-const anagram = async(input) => {
-  const response = await fetch("/scrabblelist.json")
-  const list = await response.json()
-  let textInput = input.replace(/ /g, '')
-  let inputSplit = textInput.split("")
-  for (let i=0; i < list.words.length; i++) {
-    let scrabbleSplit = list.words[i].split("")
-    if (scrabbleSplit.length <= inputSplit.length && isSubset(inputSplit, scrabbleSplit) && textInput !== list.words[i]) {
-      noAnagrams.style.display = 'none'
-      let anagramList = anagrams.appendChild(document.createElement('li'))
-      anagramList.innerText += `${list.words[i]}`
-    }
-  }
-}
-
-// adapted from https://dev.to/smpnjn/javascript-check-if-an-array-is-a-subset-of-another-array-950
-const isSubset = (array1, array2) => {
-  array1.every((element) => 
-    {array2.includes(element)}
-)}
-
 const scrabbleValue = (input) => {
   let splitWord = input.split("")
   for (let i=0; i< splitWord.length; i++) {
@@ -201,19 +220,19 @@ const pronounciation = async(input) => {
 
 // Syllables
 const syllables = async(input) => {
-  let textInput = input.replace(/ /g, '%20')
-  const response = (await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/hyphenation?useCanonical=false&limit=50&api_key=${wordnikKey}`)).data
-  let data = response.data
-  if (response) {
-    syllablesTotal.innerHTML = data.length
-    for (let i=0; i < data.length; i++) {
-      syllablesData.innerHTML += `<td>${data[i].text}</td>`
-      if (data[i].type) {
-      stress.innerHTML += `<td>${data[i].type}</td>`
-      } else {
-      stress.innerHTML += `<td></td>`
-      }
+  const wordsApi = {
+    method: 'GET',
+    url: `https://wordsapiv1.p.rapidapi.com/words/${input}`,
+    headers: {
+      'X-RapidAPI-Key': config.wordsapi_key,
+      'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
     }
+  }
+  const response = await axios.request(wordsApi)
+  const data = response.data.syllables
+  syllablesTotal.innerHTML = data.count
+  for (let i=0; i < data.list.length; i++) {
+    syllablesData.innerHTML += `<td>${data.list[i]}</td>`
   }
 }
 
@@ -234,112 +253,13 @@ const definitions = async(input) => {
     for (let i=0; i < data.length; i++) {
       const definition = definitionsList.appendChild(document.createElement('li'))
       definition.innerHTML = `${data[i].definition} (<em>${data[i].partOfSpeech}</em>)`
-      if (data[i].typeOf) {
+      if (data[i].examples) {
         const collapsible = definitionsList.appendChild(document.createElement('details'))
         const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} is a type of:`
-        for (let n=0; n < data[i].typeOf.length; n++) {
+        summary.innerHTML = `Examples using "${input}"`
+        for (let n=0; n < data[i].examples.length; n++) {
           const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].typeOf[n]
-        }
-      }
-      if (data[i].hasTypes) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} is has the following types:`
-        for (let n=0; n < data[i].hasTypes.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].hasTypes[n]
-        }
-      }
-      if (data[i].partOf) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} is a part of:`
-        for (let n=0; n < data[i].partOf.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].partOf[n]
-        }
-      }
-      if (data[i].hasParts) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} has these parts:`
-        for (let n=0; n < data[i].hasParts.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].hasParts[n]
-        }
-      }
-      if (data[i].instanceOf) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} is an instance of:`
-        for (let n=0; n < data[i].instanceOf.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].instanceOf[n]
-        }
-      }
-      if (data[i].hasInstances) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} has the following instances:`
-        for (let n=0; n < data[i].hasInstances.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].hasInstances[n]
-        }
-      }
-      if (data[i].memberOf) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} is a member of:`
-        for (let n=0; n < data[i].memberOf.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].memberOf[n]
-        }
-      }
-      if (data[i].hasMembers) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} has the following members:`
-        for (let n=0; n < data[i].hasMembers.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].hasMembers[n]
-        }
-      }
-      if (data[i].substanceOf) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} is a substance of:`
-        for (let n=0; n < data[i].substanceOf.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].substanceOf[n]
-        }
-      }
-      if (data[i].hasSubstances) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} has the following substances:`
-        for (let n=0; n < data[i].hasSubstances.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].hasSubstances[n]
-        }
-      }
-      if (data[i].inCategory) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} is a category of:`
-        for (let n=0; n < data[i].inCategory.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].inCategory[n]
-        }
-      }
-      if (data[i].hasCategories) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `${input} has these categories:`
-        for (let n=0; n < data[i].hasCategories.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].hasCategories[n]
+          details.innerHTML = data[i].examples[n]
         }
       }
     }
@@ -350,7 +270,7 @@ const definitions = async(input) => {
 const frequency = async(input) => {
   const wordsApi = {
     method: 'GET',
-    url: `https://wordsapiv1.p.rapidapi.com/words/${input}`,
+    url: `https://wordsapiv1.p.rapidapi.com/words/${input}/frequency`,
     headers: {
       'X-RapidAPI-Key': config.wordsapi_key,
       'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
@@ -359,7 +279,18 @@ const frequency = async(input) => {
   const response = await axios.request(wordsApi)
   const data = response.data.frequency
   if (response) {
-    frequencyData.innerHTML = `${data}/10`
+    const zipfHeading = frequencyData.appendChild(document.createElement('dt'))
+    const zipf = frequencyData.appendChild(document.createElement('dd'))
+    const perMillionHeading = frequencyData.appendChild(document.createElement('dt'))
+    const perMillion = frequencyData.appendChild(document.createElement('dd'))
+    const diversityHeading = frequencyData.appendChild(document.createElement('dt'))
+    const diversity = frequencyData.appendChild(document.createElement('dd'))
+    zipfHeading.innerHTML = "Zipf"
+    zipf.innerHTML = data.zipf
+    perMillionHeading.innerHTML = "Per Million"
+    perMillion.innerHTML = data.perMillion
+    diversityHeading.innerHTML = "Diversity"
+    diversity.innerHTML = data.diversity
   }
 }
 
@@ -387,57 +318,221 @@ const phonetics = async(input) => {
 // Etymologies
 const etymologies = async(input) => {
   let textInput = input.replace(/ /g, '%20')
-  const response = await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/etymologies?useCanonical=false&api_key=${wordnikKey}`)
-  const data = response.data[0]
+  const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${textInput}`)
+  const data = response.data[0].origin
   if (response) {
-    etymologiesData.innerHTML = stripXMLTags(data)
-  }
-}
-
-// Phrases
-const phrases = async(input) => {
-  let textInput = input.replace(/ /g, '%20')
-  const response = await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/phrases?limit=5&useCanonical=false&api_key=${wordnikKey}`)
-  const data = response.data
-  if (response) {
-    for (let i=0; i < data.length; i++) {
-      phrasesData.innerHTML += `<li>${data[i].gram1} ${data[i].gram2}</li>`
-      noPhrases.innerHTML = ''
-    }
+    etymologiesData.innerHTML = data
   }
 }
 
 // Related Words
 const related = async(input) => {
-  let textInput = input.replace(/ /g, '%20')
-  const response = await axios.get(`https://api.wordnik.com/v4/word.json/${textInput}/relatedWords?useCanonical=false&limitPerRelationshipType=10&api_key=${wordnikKey}`)
-  const data = response.data
-  if (response) {
-    noRelated.innerHTML = ''
+  const wordsApi = {
+    method: 'GET',
+    url: `https://wordsapiv1.p.rapidapi.com/words/${input}`,
+    headers: {
+      'X-RapidAPI-Key': config.wordsapi_key,
+      'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+    }
+  }
+  const response = await axios.request(wordsApi)
+  let data = response.data.results
     for (let i=0; i < data.length; i++) {
-      if (data[i].relationshipType === 'antonym') {
-        relatedWords.innerHTML += `<dt>Antonyms</dt>`
-        for (let n=0; n < data[i].words.length; n++) {
-          relatedWords.innerHTML += `<dd>${data[i].words[n]}</dd>`
+      if (data[i].synonyms) {
+        synonymsHeading.style.display = ''
+        synonymsHeading.innerHTML = `Synonyms of "${input.toUpperCase()}"`
+        for (let n=0; n < data[i].synonyms.length; n++) {
+          const details = synonyms.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].synonyms[n]
         }
-      } else if (data[i].relationshipType === 'synonym') {
-        relatedWords.innerHTML += `<dt>Synonyms</dt>`
-        for (let n=0; n < data[i].words.length; n++) {
-          relatedWords.innerHTML += `<dd>${data[i].words[n]}</dd>`
+      }
+      if (data[i].antonyms) {
+        antonymsHeading.style.display = ''
+        antonymsHeading.innerHTML = `Antonyms of "${input.toUpperCase()}"`
+        for (let n=0; n < data[i].antonyms.length; n++) {
+          const details = antonyms.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].antonyms[n]
         }
-      } else if (data[i].relationshipType === 'same-context') {
-        relatedWords.innerHTML += `<dt>Words used in the same context</dt>`
-        for (let n=0; n < data[i].words.length; n++) {
-          relatedWords.innerHTML += `<dd>${data[i].words[n]}</dd>`
+      }
+      if (data[i].typeOf) {
+        typeOfHeading.style.display = ''
+        typeOfHeading.innerHTML = `Hypernyms of "${input.toUpperCase()}"`
+        for (let n=0; n < data[i].typeOf.length; n++) {
+          const details = typeOf.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].typeOf[n]
         }
-      } else if (data[i].relationshipType === 'rhyme') {
-        relatedWords.innerHTML += `<dt>Rhymes</dt>`
-        for (let n=0; n < data[i].words.length; n++) {
-          relatedWords.innerHTML += `<dd>${data[i].words[n]}</dd>`
+      }
+      if (data[i].hasTypes) {
+        hasTypesHeading.style.display = ''
+        hasTypesHeading.innerHTML = `Hyponyms of "${input.toUpperCase()}"`
+        for (let n=0; n < data[i].hasTypes.length; n++) {
+          const details = hasTypes.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].hasTypes[n]
+        }
+      }
+      if (data[i].partOf) {
+        partOfHeading.style.display = ''
+        partOfHeading.innerHTML = `Holonyms of "${input.toUpperCase()}"`
+        for (let n=0; n < data[i].partOf.length; n++) {
+          const details = partOf.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].partOf[n]
+        }
+      }
+      if (data[i].hasParts) {
+        hasPartsHeading.style.display = ''
+        hasPartsHeading.innerHTML = `Meronyms of "${input.toUpperCase()}"`
+        for (let n=0; n < data[i].hasParts.length; n++) {
+          const details = hasParts.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].hasParts[n]
+        }
+      }
+      if (data[i].instanceOf) {
+        instanceOfHeading.style.display = ''
+        instanceOfHeading.innerHTML = `"${input.toUpperCase()}" is an example of:`
+        for (let n=0; n < data[i].instanceOf.length; n++) {
+          const details = instanceOf.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].instanceOf[n]
+        }
+      }
+      if (data[i].hasInstances) {
+        hasInstancesHeading.style.display = ''
+        hasInstancesHeading.innerHTML = `Examples of "${input.toUpperCase()}"`
+        for (let n=0; n < data[i].hasInstances.length; n++) {
+          const details = hasInstances.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].hasInstances[n]
+        }
+      }
+      if (data[i].similarTo) {
+        similarToHeading.style.display = ''
+        similarToHeading.innerHTML = `"${input.toUpperCase()}" is similar to:`
+        for (let n=0; n < data[i].similarTo.length; n++) {
+          const details = similarTo.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].similarTo[n]
+        }
+      }
+      if (data[i].also) {
+        alsoHeading.style.display = ''
+        alsoHeading.innerHTML = `Phrases to which "${input.toUpperCase()}" belongs`
+        for (let n=0; n < data[i].also.length; n++) {
+          const details = also.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].also[n]
+        }
+      }
+      if (data[i].entails) {
+        entailsHeading.style.display = ''
+        entailsHeading.innerHTML = `Words implied by "${input.toUpperCase()}"`
+        for (let n=0; n < data[i].entails.length; n++) {
+          const details = entails.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].entails[n]
+        }
+      }
+      if (data[i].memberOf) {
+        memberOfHeading.style.display = ''
+        memberOfHeading.innerHTML = `"${input.toUpperCase()}" is a member of:`
+        for (let n=0; n < data[i].memberOf.length; n++) {
+          const details = memberOf.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].memberOf[n]
+        }
+      }
+      if (data[i].hasMembers) {
+        hasMembersHeading.style.display = ''
+        hasMembersHeading.innerHTML = `"${input.toUpperCase()}" has the following members:`
+        for (let n=0; n < data[i].hasMembers.length; n++) {
+          const details = hasMembers.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].hasMembers[n]
+        }
+      }
+      if (data[i].substanceOf) {
+        substanceOfHeading.style.display = ''
+        substanceOfHeading.innerHTML = `"${input.toUpperCase()}" is a substance of:`
+        for (let n=0; n < data[i].substanceOf.length; n++) {
+          const details = substanceOf.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].substanceOf[n]
+        }
+      }
+      if (data[i].hasSubstances) {
+        hasSubstancesHeading.style.display = ''
+        hasSubstancesHeading.innerHTML = `Substances that are part of "${input.toUpperCase()}":`
+        for (let n=0; n < data[i].hasSubstances.length; n++) {
+          const details = hasSubstances.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].hasSubstances[n]
+        }
+      }
+      if (data[i].inCategory) {
+        inCategoryHeading.style.display = ''
+        inCategoryHeading.innerHTML = `"${input.toUpperCase()}" is a category of:`
+        for (let n=0; n < data[i].inCategory.length; n++) {
+          const details = inCategory.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].inCategory[n]
+        }
+      }
+      if (data[i].hasCategories) {
+        hasCategoriesHeading.style.display = ''
+        hasCategoriesHeading.innerHTML = `Categories of "${input.toUpperCase()}":`
+        for (let n=0; n < data[i].hasCategories.length; n++) {
+          const details = hasCategories.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].hasCategories[n]
+        }
+      }
+      if (data[i].usageOf) {
+        usageOfHeading.style.display = ''
+        usageOfHeading.innerHTML = `"${input.toUpperCase()}" is a domain usage of:`
+        for (let n=0; n < data[i].usageOf.length; n++) {
+          const details = usageOf.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].usageOf[n]
+        }
+      }
+      if (data[i].hasUsages) {
+        hasUsagesHeading.style.display = ''
+        hasUsagesHeading.innerHTML = `"${input.toUpperCase()}" has the following usages:`
+        for (let n=0; n < data[i].hasUsages.length; n++) {
+          const details = hasUsages.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].hasUsages[n]
+        }
+      }
+      if (data[i].inRegion) {
+        inRegionHeading.style.display = ''
+        inRegionHeading.innerHTML = `"${input.toUpperCase()}" is used in these regions:`
+        for (let n=0; n < data[i].inRegion.length; n++) {
+          const details = inRegion.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].inRegion[n]
+        }
+      }
+      if (data[i].regionOf) {
+        regionOfHeading.style.display = ''
+        regionOfHeading.innerHTML = `"${input.toUpperCase()}" is a region where these words are used:`
+        for (let n=0; n < data[i].regionOf.length; n++) {
+          const details = regionOf.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].regionOf[n]
+        }
+      }
+      if (data[i].pertainsTo) {
+        pertainsToHeading.style.display = ''
+        pertainsToHeading.innerHTML = `"${input.toUpperCase()}" is relevant to these words`
+        for (let n=0; n < data[i].pertainsTo.length; n++) {
+          const details = pertainsTo.appendChild(document.createElement('dd'))
+          details.innerHTML += data[i].pertainsTo[n]
+        }
+      }
+      const wordsApiRhymes = {
+        method: 'GET',
+        url: `https://wordsapiv1.p.rapidapi.com/words/${input}/rhymes`,
+        headers: {
+          'X-RapidAPI-Key': config.wordsapi_key,
+          'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+        }
+      }
+      const rhymesApi = await axios.get(wordsApiRhymes)
+      let rhymesData = rhymesApi.rhymes.all
+      if (rhymesData) {
+        rhymes.style.display = ''
+        rhymesHeading.innerHTML = `${input.toUpperCase()} rhymes with:`
+        for (let i=0; i < rhymesData.length; i++) {
+          const details = rhymes.appendChild(document.createElement('dd'))
+          details.innerHTML += rhymesData[i]
         }
       }
     }
-  }
 }
 
 // Randomly generated word
@@ -460,9 +555,6 @@ const random = async() => {
 
 // random()
 
-// adapted from https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-224.php
-const stripXMLTags = str => str.replace(/<[^>]*>/g, '').replace('[', '').replace(']','')
-
 // Event Listeners
 
   // Search word event listener
@@ -480,17 +572,11 @@ submitButton.addEventListener('click', () => {
 
   // step 1. check if valid scrabble word
   validScrabbleWord(input)
-  // step 2. scrabble anagram
-  anagramHeading.innerHTML = `These playable words can be made from ${input.toUpperCase()}`
-  noAnagrams.style.display = ''
-  removeChildNodes(anagrams)
-  anagram(input)
   // step 3. pronounciation audio
   pronounciation(input)
   // step 4. syllables
   syllablesTotal.innerHTML = "No data available"
   syllablesData.innerHTML = ''
-  stress.innerHTML = ''
   syllables(input)
   // step 5. frequency
   frequencyData.innerHTML = "No data available"
@@ -503,13 +589,8 @@ submitButton.addEventListener('click', () => {
   removeChildNodes(definitionsList)
   noDefinitions.style.display = ''
   definitions(input)
-  // step 8. Phrases
-  noPhrases.innerHTML = `There are no phrases using "${input}"`
-  removeChildNodes(phrasesData)
-  phrases(input)
   // step 9. related words
   noRelated.innerHTML = `There are no words related to "${input}"`
-  removeChildNodes(relatedWords)
   related(input)
   // step 10. etymologies
   etymologiesData.innerHTML = "No data available"
@@ -528,9 +609,6 @@ randomWord.addEventListener('click', () => {
   let input = randomWord.innerText
   random()
   validScrabbleWord(input)
-  noAnagrams.style.display = ''
-  removeChildNodes(anagrams)
-  anagram(input)
   pronounciation(input)
   syllablesTotal.innerHTML = "No data available"
   syllablesData.innerHTML = ''
@@ -544,9 +622,6 @@ randomWord.addEventListener('click', () => {
   noDefinitions.style.display = ''
   removeChildNodes(definitionsList)
   definitions(input)
-  noPhrases.innerHTML = `There are no phrases using "${input}"`
-  removeChildNodes(phrasesData)
-  phrases(input)
   noRelated.innerHTML = `There are no words related to "${input}"`
   removeChildNodes(relatedWords)
   related(input)
@@ -560,9 +635,6 @@ for (let i=0; i < highScorers.length; i++) {
     let input = highScorers[i].innerText
     random()
     validScrabbleWord(input)
-    removeChildNodes(anagrams)
-    noAnagrams.style.display = ''
-    anagram(input)
     pronounciation(input)
     syllablesTotal.innerHTML = "No data available"
     syllablesData.innerHTML = ''
@@ -576,9 +648,6 @@ for (let i=0; i < highScorers.length; i++) {
     removeChildNodes(definitionsList)
     noDefinitions.style.display = ''
     definitions(input)
-    removeChildNodes(phrasesData)
-    noPhrases.innerHTML = `There are no phrases using "${input}"`
-    phrases(input)
     removeChildNodes(relatedWords)
     noRelated.innerHTML = `There are no words related to "${input}"`
     related(input)

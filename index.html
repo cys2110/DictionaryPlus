@@ -25,7 +25,7 @@
         <button id="submitButton">Go</button>
     </div>
     <div id="main-display">
-        <div id="output">
+        <div id="outputs">
     <div id="valid-word">This is a <span class="valid">VALID</span> Scrabble word.</div>
     <div id="score-display">This word is worth <span id="scrabble-value"></span> points.</div>
     <div id="invalid-word">This is an <span class="invalid">INVALID</span> Scrabble word.</div>
@@ -38,14 +38,14 @@
         <div id="syllables-section">
             <h3>Syllables</h3>
             <p id="syllables-total"></p>
-            <table>
+            <table id="syllables-table">
                 <tr id="syllables"></tr>
-                <tr id="stress"></tr>
             </table>
         </div>
         <div id="frequency-section">
             <h3>Frequency Rating</h3>
-            <p id="frequency"></p>
+            <dl id="frequency">
+            </dl>
         </div>
         <div id="phonetics-section">
             <h3>Phonetics</h3>
@@ -65,16 +65,32 @@
             <h3>Etymologies</h3>
             <p id="etymologies"></p>
         </div>
-        <div id="phrases-section">
-            <h3>Phrases</h3>
-            <p id="no-phrases"></p>
-            <ul id="phrases"></ul>
-        </div>
         <div id="related-words-section">
             <h3>Related Words</h3>
             <p id="no-related"></p>
-            <dl id="related-words">
-            </dl>
+            <details id="synonyms"><summary id="synonyms-heading"></summary></details>
+            <details id="antonyms"><summary id="antonyms-heading"></summary></details>
+            <details id="rhymes"><summary id="rhymes-heading"></summary></details>
+            <details id="type-of"><summary id="type-of-heading"></summary></details>
+            <details id="has-types"><summary id="has-types-heading"></summary></details>
+            <details id="part-of"><summary id="part-of-heading"></summary></details>
+            <details id="has-parts"><summary id="has-parts"></summary></details>
+            <details id="instance-of"><summary id="instance-of"></summary></details>
+            <details id="has-instances"><summary id="has-instances"></summary></details>
+            <details id="similar-to"><summary id="similar-to"></summary></details>
+            <details id="also"><summary id="also-heading"></summary></details>
+            <details id="entails"><summary id="entails-heading"></summary></details>
+            <details id="member-of"><summary id="member-of"></summary></details>
+            <details id="has-members"><summary id="has-members-heading"></summary></details>
+            <details id="substance-of"><summary id="substance-of-heading"></summary></details>
+            <details id="has-substances"><summary id="has-substances-heading"></summary></details>
+            <details id="in-category"><summary id="in-category-heading"></summary></details>
+            <details id="has-categories"><summary id="has-categories-heading"></summary></details>
+            <details id="usage-of"><summary id="usage-of-heading"></summary></details>
+            <details id="has-usages"><summary id="has-usages-heading"></summary></details>
+            <details id="in-region"><summary id="in-region-heading"></summary></details>
+            <details id="region-of"><summary id="region-of-heading"></summary></details>
+            <details id="pertains-to"><summary id="pertains-to-heading"></summary></details>
         </div>
         <div id="definitions-section">
             <h3>Definitions</h3>
