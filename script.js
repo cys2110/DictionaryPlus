@@ -10,6 +10,8 @@ const audio = document.querySelector('#audio')
   audio.style.display = 'none'
 const mainDisplay = document.querySelector('#outputs')
   mainDisplay.style.display = 'none'
+const navBar = document.querySelector('#navbar')
+  navBar.style.display = 'none'
 const homepage = document.querySelector('#home')
 const frequencyData = document.querySelector('#frequency')
 const phoneticsData = document.querySelector('#phonetics')
@@ -256,9 +258,9 @@ const syllables = async(input) => {
   }
   const response = await axios.request(wordsApi)
   const data = response.data.syllables
-  syllablesTotal.innerHTML = data.count
+  syllablesTotal.innerHTML = `${input.toUpperCase()} has ${data.count} syllables`
   for (let i=0; i < data.list.length; i++) {
-    syllablesData.innerHTML += `<td>${data.list[i]}</td>`
+    syllablesData.innerHTML += `${data.list[i]}-`
   }
 }
 
@@ -280,12 +282,9 @@ const definitions = async(input) => {
       const definition = definitionsList.appendChild(document.createElement('li'))
       definition.innerHTML = `${data[i].definition} (<em>${data[i].partOfSpeech}</em>)`
       if (data[i].examples) {
-        const collapsible = definitionsList.appendChild(document.createElement('details'))
-        const summary = collapsible.appendChild(document.createElement('summary'))
-        summary.innerHTML = `Examples using "${input}"`
         for (let n=0; n < data[i].examples.length; n++) {
-          const details = collapsible.appendChild(document.createElement('dd'))
-          details.innerHTML = data[i].examples[n]
+          const details = definition.appendChild(document.createElement('dd'))
+          details.innerHTML = `${data[i].examples[n].charAt(0).toUpperCase()}${data[i].examples[n].slice(1)}.`
         }
       }
     }
@@ -335,6 +334,7 @@ const phonetics = async(input) => {
   if (response) {
     phoneticsTable.style.display = ''
     noPhonetics.style.display = 'none'
+    console.log(data)
     for (let i=0; i < data.length; i++) {
       const phoneticsTable = phoneticsData.appendChild(document.createElement('tr'))
       phoneticsTable.innerHTML = `<td>${data[i].transcriptions[0].transcription}</td><td>${data[i].context.regions['0']}</td><td>${data[i].transcriptions[0].notation}</td>`
@@ -619,6 +619,7 @@ submitButton.addEventListener('click', () => {
   scoreDisplay.style.display = 'none'
   homepage.style.display = 'none'
   phoneticsTable.style.display = 'none'
+  navBar.style.display = ''
   
   // random()
 
@@ -628,12 +629,10 @@ submitButton.addEventListener('click', () => {
   pronounciation(input)
   // step 4. syllables
   syllablesTotal.innerHTML = "No data available"
-  syllablesData.innerHTML = ''
+  syllablesData.innerHTML = '-'
   syllables(input)
   // step 5. frequency
-  zipf.innerHTML = 'No data availabe'
-  perMillion.innerHTML = 'No data available'
-  diversity.innerHTML = 'No data available'
+  removeChildNodes(frequencyData)
   frequency(input)
   // step 6. phonetics
   removeChildNodes(phoneticsData)

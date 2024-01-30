@@ -1,14 +1,15 @@
 body {
     background-color: rgb(240, 237, 213);
     font-family: 'Ruda', sans-serif;
+    margin: 0;
 }
 
 .header {
     background-color: rgb(70, 18, 229);
-    padding: 10px;
+    padding: 20px;
+    padding-left: 30px;
     position: sticky;
     top: 0;
-    margin: 0;
     margin-bottom: 20px;
     color: rgb(244, 231, 189);
 }
@@ -39,7 +40,7 @@ body {
     margin-left: 300px;
 }
 
-.navbar {
+#navbar {
     background-color: rgb(70, 18, 229);
     color: white;
     position: fixed;
@@ -49,11 +50,13 @@ body {
     padding-right: 50px;
 }
 
-.navbar a {
+#navbar a {
     color: white;
+    text-decoration: none;
+    font-size: large;
 }
 
-.navbar li {
+#navbar li {
     display: block;
     line-height: 3em;
 }
@@ -70,16 +73,22 @@ body {
     font-weight: 900;
 }
 
-#syllables-table {
-    border: none;
-    border-collapse: collapse;
+h2 {
+    color: rgb(233, 61, 236);
 }
 
-#syllables-table td {
-    border-top: none;
-    border-bottom: none;
-    border-right: solid;
-    border-left: solid
+dt {
+    font-weight: bold;
+    font-style: italic;
+}
+
+th, td {
+    text-align: center;
+    padding: 10px;
+}
+
+#definitions dd {
+    font-size: 13px;
 }
 
 aside {
@@ -109,4 +118,9 @@ aside {
     line-height: 2em;
     cursor: pointer;
     text-decoration: underline dashed;
+}
+
+hr, #footnotes {
+    margin-left: 300px;
+    margin-right: 30px;
 }
