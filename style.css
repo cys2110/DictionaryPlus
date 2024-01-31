@@ -3,6 +3,7 @@ body {
     font-family: 'Ruda', sans-serif;
     margin: 0;
     line-height: 2em;
+    padding-bottom: 5px;
 }
 
 .dark-mode {
@@ -138,6 +139,10 @@ aside {
     margin: 20px;
 }
 
+#scrabble-list h4 {
+    text-align: center;
+}
+
 #random-generated {
     text-align: center;
 }
@@ -170,4 +175,137 @@ hr, #footnotes {
 
 h2 sup {
     font-size: 14px;
+}
+
+@media screen and (max-width: 1440px) {
+    .header {
+        width: 99%;
+    }
+
+    aside {
+        width: 25%;
+    }
+
+    #footnotes {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .header {
+        width: 102%;
+    }
+
+    .inputs {
+        margin-left: 120px
+    }
+
+    #main-display {
+        margin-left: 200px;
+    }
+
+    aside {
+        margin-right: -5%;
+        width: 30%;
+    }
+
+    #navbar {
+        width: 100px;
+        top: 180px;
+    }
+
+    #navbar a{
+        font-size: 13px;
+    }
+
+    hr, #footnotes {
+        margin-left: 200px
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 13px
+    }
+
+    .header {
+        width: 100%;
+    }
+
+    .inputs {
+        margin-left: 160px;
+        width: 80vw;
+    }
+
+    #submitButton {
+        border-radius: 15%;
+    }
+
+    #random-generated, #scrabble-list {
+        padding: 5px;
+        text-align: center;
+    }
+
+    #navbar {
+        top: 170px
+    }
+
+    aside {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    body {
+        font-size: 12px;
+        line-height: normal;
+    }
+
+    #navbar {
+        display: none;
+    }
+
+    #submitButton {
+        border-radius: 15%;
+    }
+
+    #subtitle {
+        display: none;
+    }
+
+    aside {
+        display: none
+    }
+
+    hr {
+        display: none
+    }
+
+    #footnotes {
+        display: none
+    }
+
+    .footnotes {
+        display: none;
+    }
+    
+    #main-display {
+        margin-left: 10px;
+    }
+
+    .inputs {
+        width: 400px;
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .header {
+        width: 100vw;
+    }
+
+    #submitButton {
+        width: 50px;
+        margin-right: 10px;
+    }
 }

@@ -342,7 +342,6 @@ const phonetics = async(input) => {
   if (response) {
     phoneticsTable.style.display = ''
     noPhonetics.style.display = 'none'
-    console.log(data)
     for (let i=0; i < data.length; i++) {
       const phoneticsTable = phoneticsData.appendChild(document.createElement('tr'))
       phoneticsTable.innerHTML = `<td>${data[i].transcriptions[0].transcription}</td><td>${data[i].context.regions['0']}</td><td>${data[i].transcriptions[0].notation}</td>`
