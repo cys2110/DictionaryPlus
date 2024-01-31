@@ -189,6 +189,14 @@ const randomWord = document.querySelector('#random-word')
 const randomDefinition = document.querySelector('#random-definition')
 const highScorers = document.querySelectorAll('.high-scorer')
 
+// Dark mode
+const body = document.querySelector('body')
+const darkModeButton = document.querySelector('#dark-mode-button')
+  darkModeButton.style.display = ''
+const lightModeButton = document.querySelector('#light-mode-button')
+  lightModeButton.style.display = 'none'
+const footnotes = document.querySelectorAll('.footnotes')
+
 // Functions
 
 // Clear populated data
@@ -683,24 +691,65 @@ searchBar.addEventListener('keydown', (e) => {
 // Random word event listener
 randomWord.addEventListener('click', () => {
   let input = randomWord.innerText
-  random()
+  searchBar.value = randomWord.innerText
+  // Reset all fields
+  validScrabble.style.display = 'none'
+  invalidScrabble.style.display = 'none'
+  audio.style.display = 'none'
+  mainDisplay.style.display = ''
+  scoreDisplay.style.display = 'none'
+  homepage.style.display = 'none'
+  phoneticsTable.style.display = 'none'
+  navBar.style.display = ''
+  
+  // random()
+
+  // step 1. check if valid scrabble word
   validScrabbleWord(input)
+  // step 3. pronounciation audio
   pronounciation(input)
+  // step 4. syllables
   syllablesTotal.innerHTML = "No data available"
-  syllablesData.innerHTML = ''
-  stress.innerHTML = ''
+  syllablesData.innerHTML = '-'
   syllables(input)
-  frequencyData.innerHTML = "No data available"
+  // step 5. frequency
+  removeChildNodes(frequencyData)
   frequency(input)
-  noPhonetics.style.display = ''
+  // step 6. phonetics
   removeChildNodes(phoneticsData)
+  noPhonetics.style.display = ''
   phonetics(input)
-  noDefinitions.style.display = ''
+  // step 7. definitions
   removeChildNodes(definitionsList)
+  noDefinitions.style.display = ''
   definitions(input)
+  // step 9. related words
   noRelated.innerHTML = `There are no words related to "${input}"`
-  removeChildNodes(relatedWords)
+  synonyms.style.display = 'none'
+  antonyms.style.display = 'none'
+  rhymes.style.display = 'none'
+  typeOf.style.display = 'none'
+  hasTypes.style.display = 'none'
+  partOf.style.display = 'none'
+  hasParts.style.display = 'none'
+  instanceOf.style.display = 'none'
+  hasInstances.style.display = 'none'
+  similarTo.style.display = 'none'
+  also.style.display = 'none'
+  entails.style.display = 'none'
+  memberOf.style.display = 'none'
+  hasMembers.style.display = 'none'
+  substanceOf.style.display = 'none'
+  hasSubstances.style.display = 'none'
+  inCategory.style.display = 'none'
+  hasCategories.style.display = 'none'
+  usageOf.style.display = 'none'
+  hasUsages.style.display = 'none'
+  inRegion.style.display = 'none'
+  regionOf.style.display = 'none'
+  pertainsTo.style.display = 'none'
   related(input)
+  // step 10. etymologies
   etymologiesData.innerHTML = "No data available"
   etymologies(input)
 })
@@ -709,25 +758,89 @@ randomWord.addEventListener('click', () => {
 for (let i=0; i < highScorers.length; i++) {
   highScorers[i].addEventListener('click', () => {
     let input = highScorers[i].innerText
-    random()
-    validScrabbleWord(input)
-    pronounciation(input)
-    syllablesTotal.innerHTML = "No data available"
-    syllablesData.innerHTML = ''
-    stress.innerHTML = ''
-    syllables(input)
-    frequencyData.innerHTML = "No data available"
-    frequency(input)
-    removeChildNodes(phoneticsData)
-    noPhonetics.style.display = ''
-    phonetics(input)
-    removeChildNodes(definitionsList)
-    noDefinitions.style.display = ''
-    definitions(input)
-    removeChildNodes(relatedWords)
-    noRelated.innerHTML = `There are no words related to "${input}"`
-    related(input)
-    etymologiesData.innerHTML = "No data available"
-    etymologies(input)
+    searchBar.value = highScorers[i].innerText
+    // Reset all fields
+  validScrabble.style.display = 'none'
+  invalidScrabble.style.display = 'none'
+  audio.style.display = 'none'
+  mainDisplay.style.display = ''
+  scoreDisplay.style.display = 'none'
+  homepage.style.display = 'none'
+  phoneticsTable.style.display = 'none'
+  navBar.style.display = ''
+  
+  // random()
+
+  // step 1. check if valid scrabble word
+  validScrabbleWord(input)
+  // step 3. pronounciation audio
+  pronounciation(input)
+  // step 4. syllables
+  syllablesTotal.innerHTML = "No data available"
+  syllablesData.innerHTML = '-'
+  syllables(input)
+  // step 5. frequency
+  removeChildNodes(frequencyData)
+  frequency(input)
+  // step 6. phonetics
+  removeChildNodes(phoneticsData)
+  noPhonetics.style.display = ''
+  phonetics(input)
+  // step 7. definitions
+  removeChildNodes(definitionsList)
+  noDefinitions.style.display = ''
+  definitions(input)
+  // step 9. related words
+  noRelated.innerHTML = `There are no words related to "${input}"`
+  synonyms.style.display = 'none'
+  antonyms.style.display = 'none'
+  rhymes.style.display = 'none'
+  typeOf.style.display = 'none'
+  hasTypes.style.display = 'none'
+  partOf.style.display = 'none'
+  hasParts.style.display = 'none'
+  instanceOf.style.display = 'none'
+  hasInstances.style.display = 'none'
+  similarTo.style.display = 'none'
+  also.style.display = 'none'
+  entails.style.display = 'none'
+  memberOf.style.display = 'none'
+  hasMembers.style.display = 'none'
+  substanceOf.style.display = 'none'
+  hasSubstances.style.display = 'none'
+  inCategory.style.display = 'none'
+  hasCategories.style.display = 'none'
+  usageOf.style.display = 'none'
+  hasUsages.style.display = 'none'
+  inRegion.style.display = 'none'
+  regionOf.style.display = 'none'
+  pertainsTo.style.display = 'none'
+  related(input)
+  // step 10. etymologies
+  etymologiesData.innerHTML = "No data available"
+  etymologies(input)
   })
 }
+
+// Dark mode
+darkModeButton.addEventListener('click', () => {
+  body.classList.toggle('dark-mode')
+  darkModeButton.style.display = 'none'
+  lightModeButton.style.display = ''
+  randomWord.classList.toggle('dark-mode-h4')
+  audio.classList.toggle('dark-mode-h4')
+  for (let i=0; i < footnotes.length; i++) {
+    footnotes[i].classList.toggle('dark-mode-h4')
+  }
+})
+
+lightModeButton.addEventListener('click', () => {
+  body.classList.toggle('dark-mode')
+  lightModeButton.style.display = 'none'
+  darkModeButton.style.display = ''
+  randomWord.classList.toggle('dark-mode-h4')
+  audio.classList.toggle('dark-mode-h4')
+  for (let i=0; i < footnotes.length; i++) {
+    footnotes[i].classList.toggle('dark-mode-h4')
+  }
+})
