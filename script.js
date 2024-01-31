@@ -188,6 +188,10 @@ let scrabbleValues = [{
 const randomWord = document.querySelector('#random-word')
 const randomDefinition = document.querySelector('#random-definition')
 const highScorers = document.querySelectorAll('.high-scorer')
+const fn = document.querySelector('#footnotes')
+  fn.style.display = 'none'
+const fnDivider = document.querySelector('#fn-divider')
+  fnDivider.style.display = 'none'
 
 // Dark mode
 const body = document.querySelector('body')
@@ -627,6 +631,8 @@ submitButton.addEventListener('click', () => {
   homepage.style.display = 'none'
   phoneticsTable.style.display = 'none'
   navBar.style.display = ''
+  fnDivider.style.display = ''
+  fn.style.display = ''
   
   // random()
 
@@ -700,6 +706,8 @@ randomWord.addEventListener('click', () => {
   homepage.style.display = 'none'
   phoneticsTable.style.display = 'none'
   navBar.style.display = ''
+  fnDivider.style.display = ''
+  fn.style.display = ''
   
   // random()
 
@@ -767,6 +775,8 @@ for (let i=0; i < highScorers.length; i++) {
   homepage.style.display = 'none'
   phoneticsTable.style.display = 'none'
   navBar.style.display = ''
+  fnDivider.style.display = ''
+  fn.style.display = ''
   
   // random()
 
