@@ -193,7 +193,7 @@ h2 sup {
 
 @media screen and (max-width: 1024px) {
     .header {
-        width: 102%;
+        width: 96%;
     }
 
     .inputs {
@@ -205,7 +205,6 @@ h2 sup {
     }
 
     aside {
-        margin-right: -5%;
         width: 30%;
     }
 
@@ -229,7 +228,7 @@ h2 sup {
     }
 
     .header {
-        width: 100%;
+        width: 99%;
     }
 
     .inputs {

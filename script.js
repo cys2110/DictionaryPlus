@@ -98,6 +98,8 @@ const relatedSection = document.querySelector('#related-words-section')
 const definitionsList = document.querySelector('#definitions')
 const noDefinitions = document.querySelector('#no-definitions')
   noDefinitions.style.display = ''
+const crosswordHeading = document.querySelector('#crossword-heading')
+const crosswords = document.querySelector('#crossword')
 
 // Scrabble value variables
 const scoreDisplay = document.querySelector('#score-display')
@@ -301,6 +303,21 @@ const definitions = async(input) => {
       }
     }
   }
+}
+
+// Crossword
+const crossword = async(input) => {
+  const scrabbleInput = input.toUpperCase().replace(/ /g, '')
+  const response = await fetch("/crossword.json")
+  const list = await response.json()
+  if (list[scrabbleInput]) {
+    for (let i=0; i < list[scrabbleInput].length; i++) {
+      let clue = crosswords.appendChild(document.createElement('li'))
+      clue.innerText += list[scrabbleInput][i]
+    }
+  } else {
+    crosswordHeading.innerHTML = `No crossword clues related to ${scrabbleInput}`
+  } 
 }
 
 // Frequency
@@ -684,6 +701,9 @@ submitButton.addEventListener('click', () => {
   // step 10. etymologies
   etymologiesData.innerHTML = "No data available"
   etymologies(input)
+  // step 11. crossword
+  crosswordHeading.innerHTML = `Crossword Clues Related to ${input.toUpperCase().replace(/ /g, '')}`
+  crossword(input)
 })
 
 // adpted from https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
@@ -759,6 +779,10 @@ randomWord.addEventListener('click', () => {
   // step 10. etymologies
   etymologiesData.innerHTML = "No data available"
   etymologies(input)
+
+  // step 11. crossword
+  crosswordHeading.innerHTML = `Crossword Clues Related to ${input.toUpperCase().replace(/ /g, '')}`
+  crossword(input)
 })
 
 // Scrabble list event listener
@@ -828,6 +852,10 @@ for (let i=0; i < highScorers.length; i++) {
   // step 10. etymologies
   etymologiesData.innerHTML = "No data available"
   etymologies(input)
+
+  // step 11. crossword
+  crosswordHeading.innerHTML = `Crossword Clues Related to ${input.toUpperCase().replace(/ /g, '')}`
+  crossword(input)
   })
 }
 
