@@ -900,6 +900,13 @@
 "MONODRAMA": [
     "Beckett's \"Krapp's Last Tape,\" e.g."
 ],
+"NATURALS": [
+    "Sevens and elevens",
+    "Seven and eleven at dice",
+    "Vegas rolls",
+    "White piano keys",
+    "Quick studies"
+],
 "NBAJAM": [
     "Classic arcade game with lots of shooting",
     "Classic arcade game with an announcer who shouts \"Boomshakalaka!\"",
@@ -920,6 +927,10 @@
 "NUTCRACKERS": [
     "Christmastime productions",
     "Hinged implements"
+],
+"OLDGEEZER": [
+    "Coot",
+    "White-whiskered sort"
 ],
 "OLIGARCH": [
     "Despot",
@@ -971,8 +982,15 @@
     "Simple and serene",
     "Beethoven's Sixth"
 ],
+"PENNON": [
+    "Flag carried on a knight's lance",
+    "Flag"
+],
 "PERCYBYSSHESHELLEY": [
     "\"If Winter comes, can Spring be far behind?\" poet"
+],
+"PERIMASON": [
+    "Around an attorney?"
 ],
 "PETEROTOOLE": [
     "Star of \"Lawrence of Arabia\"",
@@ -989,6 +1007,14 @@
 ],
 "PIROZHKI": [
     "Small meat-stuffed pastries"
+],
+"POMMEL": [
+    "Knob on a sword handle",
+    "Saddle part",
+    "Part of a saddle",
+    "Beat",
+    "Part of a horse",
+    "___ horse (gymnastics apparatus)"
 ],
 "POSTERN": [
     "Christie's \"___ of Fate\"",
@@ -1011,6 +1037,15 @@
 ],
 "QUEENBESS": [
     "Good ___ (Elizabeth I)"
+],
+"QUADRUPLEPANGRAM": [
+    "What this puzzle is, orthographically"
+],
+"QUEENANNESLACE": [
+    "Royal trimming",
+    "Wildflower from which the cultivated carrot originated",
+    "Frilly white flower also called wild carrot",
+    "Wild carrot"
 ],
 "QUETZAL": [
     "Bird of the Aztecs",
