@@ -1942,6 +1942,12 @@
 "BUNS": [
     "Barbecue items"
 ],
+"CADORE": [
+    "Range of NE Italy"
+],
+"CAIRO": [
+    "Arafat's birthplace"
+],
 "CALC": [
     "Math class, for short"
 ],
@@ -1971,6 +1977,9 @@
 ],
 "CASA": [
     "A Spaniard's home is his ___"
+],
+"CASH": [
+    "Word after ready or petty"
 ],
 "CASTLE": [
     "Rook"
@@ -2028,6 +2037,12 @@
 ],
 "COCO": [
     "Hepburn role"
+],
+"COLLIE": [
+    "A sheepdog"
+],
+"COPA": [
+    "Place where you're advised \"Don't fall in love,\" in song"
 ],
 "COTS": [
     "Handy roll-outs at sleepovers"
@@ -2095,6 +2110,12 @@
 "ECCE": [
     "\"Behold,\" to Boethius"
 ],
+"ECLAT": [
+    " Razzle-dazzle"
+],
+"ECLECTIC": [
+    "Diverse"
+],
 "ECO": [
     "Kind to Mother Nature"
 ],
@@ -2117,11 +2138,32 @@
 "EIEIO": [
     "Trailer for farm animals?"
 ],
+"ELAN": [
+    "Flair"
+],
+"ELIE": [
+    "Nobelist Wiesel"
+],
+"ELIHU": [
+    "Artist-illustrator Vedder"
+],
+"ELON": [
+    "Carolina college"
+],
+"ELSA": [
+    "Designer Schiaparelli"
+],
 "ELTON": [
     "Singer John"
 ],
 "EMANATE": [
     "Flow forth"
+],
+"EMBED": [
+    "Surround firmly"
+],
+"ENDALL": [
+    "Ultimate thing"
 ],
 "ENDO": [
     "Marijuana, in modern slang"
@@ -2136,7 +2178,17 @@
     "\"...___ saw Elba\""
 ],
 "ERIC": [
-    "Speed skater Heiden"
+    "Speed skater Heiden",
+    "Pop singer Carmen"
+],
+"ERICA": [
+    "Co-anchor Hill of \"The Early Show\""
+],
+"ERNES": [
+    "Sea eagles"
+],
+"EROICA": [
+    "Beethoven's Third, popularly"
 ],
 "EROS": [
     "Matchmaker of myth"
@@ -2144,17 +2196,26 @@
 "ERST": [
     "Once, at one time"
 ],
+"ESL": [
+    "Night school subj."
+],
 "ESP": [
     "Clairvoyance, for short"
 ],
 "ESSEN": [
     "Ruhr industrial city"
 ],
+"ETCETERA": [
+    "Yadda yadda yadda"
+],
 "ETD": [
     "La Guardia abbr."
 ],
 "EURE": [
     "French river or department"
+],
+"EVA": [
+    "Powerful Perón"
 ],
 "EVILS": [
     "Satan's doings"
@@ -2190,7 +2251,8 @@
     "Burden, to the Bard"
 ],
 "FAST": [
-    "This is broken after Communion"
+    "This is broken after Communion",
+    "Quick"
 ],
 "FASTEN": [
     "Secure"
@@ -2200,6 +2262,9 @@
 ],
 "FERN": [
     "Item by many a reception desk"
+],
+"FERNS": [
+    "Fiddlehead sources"
 ],
 "FETA": [
     "Some crumbly blocks"
@@ -2214,13 +2279,17 @@
     "Patina"
 ],
 "FINER": [
-    "\"Nothing could be ___ . . . \""
+    "\"Nothing could be ___ . . . \"",
+    "More delicate"
 ],
 "FINN": [
     "Fjord explorer?"
 ],
 "FIT": [
     "Tailor's concern"
+],
+"FLAG": [
+    "Colors"
 ],
 "FLOOD": [
     "Genesis event"
@@ -2405,17 +2474,38 @@
 "JABS": [
     "Bowe blows"
 ],
+"JACKBLACK": [
+    "Star of 2010's \"Gulliver's Travels\""
+],
 "JAGUAR": [
     "Operating system between Puma and Panther"
+],
+"JAIME": [
+    "The Bionic Woman's first name"
 ],
 "JAM": [
     "What a photocopier light may indicate"
 ],
+"JANE": [
+    "Dick's running mate"
+],
 "JAVA": [
     "World's most populous island"
 ],
+"JAYWALK": [
+    "Four balls to a Torontonian"
+],
+"JEEP": [
+    "\"Go anywhere, do anything\" sloganeer"
+],
 "JELLS": [
     "Gets set"
+],
+"JESSES": [
+    "James and Jackson"
+],
+"JET": [
+    "Sleek runway model?"
 ],
 "JFK": [
     "Stone work"
@@ -2429,8 +2519,26 @@
 "JOE": [
     "Mud"
 ],
+"JOSEPHS": [
+    "Brooklyn's St. ___ College"
+],
+"JOSH": [
+    "Banter"
+],
 "JUMBO": [
     "Extra-large"
+],
+"JUMPINJACKFLASH": [
+    "1968 hit with the line \"I was raised by a toothless, bearded hag\""
+],
+"JUPITER": [
+    "Florida city"
+],
+"JUST": [
+    "___ cause, \"To be on the safe side ...\""
+],
+"JUTS": [
+    "Sticks out"
 ],
 "KANE": [
     "Classic Welles role"
@@ -2842,20 +2950,47 @@
 "PSIS": [
     "Greek letters"
 ],
+"QRST": [
+    "Alphabet quartet"
+],
+"QTS": [
+    "Bev. units"
+],
 "QUA": [
     "In the capacity of"
+],
+"QUADRUPLEPANGRAM": [
+    "What this puzzle is, orthographically"
+],
+"QUAKE": [
+    "It can move mountains"
 ],
 "QUE": [
     "\"_____ passa?\""
 ],
+"QUEENANNESLACE": [
+    "Royal trimming"
+],
 "QUERIED": [
     "Conducted an interview"
+],
+"QUICK": [
+    "Apt"
+],
+"QUIPSTER": [
+    "Wit"
+],
+"QUIT": [
+    "Relinquish"
 ],
 "QUITO": [
     "Ecuador's capital"
 ],
 "QUOTER": [
     "Newsman, often"
+],
+"QUOTIENT": [
+    "7/11 product?"
 ],
 "RABBLE": [
     "Riffraff"
@@ -3003,6 +3138,9 @@
 "SCORSESE": [
     "\"Taxi Driver\" director"
 ],
+"SCAM": [
+    "Con game"
+],
 "SCRAPE": [
     "Scuffle"
 ],
@@ -3027,6 +3165,9 @@
 "SHAVE": [
     "Barber's work"
 ],
+"SHIRT": [
+    "Polo, e.g."
+],
 "SICKOS": [
     "Twisted sorts"
 ],
@@ -3042,6 +3183,9 @@
 "SKEE": [
     "___-Ball"
 ],
+"SKID": [
+    "Lose control on the road"
+],
 "SLAIN": [
     "An anagram for nails"
 ],
@@ -3050,6 +3194,9 @@
 ],
 "SOI": [
     "___-disant (so-called)"
+],
+"SOLIDS": [
+    "Some foods for growing babies"
 ],
 "SPELLS": [
     "Ones cast in \"Wicked\""
@@ -3066,6 +3213,9 @@
 ],
 "SRS": [
     "Some SAT takers: Abbr."
+],
+"STEER": [
+    "Guide"
 ],
 "STAND": [
     "Prepare to sing the national anthem"
@@ -3094,6 +3244,9 @@
 "SUMTO": [
     "Total"
 ],
+"SWATHE": [
+    "Wrap in bandages"
+],
 "TAD": [
     "Small amount"
 ],
@@ -3118,6 +3271,9 @@
 "TESTCASE": [
     "Legal precedent"
 ],
+"TIDBIT": [
+    "Morsel"
+],
 "TILLED": [
     "Did farm work"
 ],
@@ -3131,10 +3287,14 @@
     "European shark"
 ],
 "TOREADOR": [
-    "Escamillo, e.g."
+    "Escamillo, e.g.",
+    "Antonio Chenel, e.g."
 ],
 "TORIC": [
     "Doughnutlike"
+],
+"TREK": [
+    "Arduous journey"
 ],
 "TRIFLE": [
     "Bagatelle"
@@ -3346,11 +3506,17 @@
 "WAR": [
     "Whitman's \"The Real ___\""
 ],
+"WARMED": [
+    "Became friendly, with \"to\""
+],
 "WASP": [
     "W.W. II aircraft carrier"
 ],
 "WATERSLIDES": [
     "Amusement park attractions"
+],
+"WATT": [
+    "James with an electrical unit named after him"
 ],
 "WEB": [
     "Network"
@@ -3375,6 +3541,9 @@
 ],
 "WIND": [
     "Change direction"
+],
+"WINDSORS": [
+    "Wide ties or knots"
 ],
 "WIRE": [
     "Circus prop"
