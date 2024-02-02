@@ -16,3 +16,5 @@ This app will tell you everything you wanted (and didn't want) to know about any
 - [Words API](https://www.wordsapi.com/docs/#introduction)
 - [NYT Crosswords 1976-2018](https://github.com/doshea/nyt_crosswords)
 - [NYT Crosswords 1993-2021](https://www.kaggle.com/datasets/darinhawley/new-york-times-crossword-clues-answers-19932021?resource=download)
+
+**Note: You must have your own API keys for Lingua Robot and Words API and replace the variables in the javascript in order for this to work**
