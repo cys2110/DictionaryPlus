@@ -28,73 +28,50 @@ const noRelated = document.querySelector('#no-related')
 const relatedSection = document.querySelector('#related-words-section')
   const synonyms = document.querySelector('#synonyms')
     synonyms.style.display = 'none'
-  const synonymsHeading = document.querySelector('#synonyms-heading')
   const antonyms = document.querySelector('#antonyms')
     antonyms.style.display = 'none'
-  const antonymsHeading = document.querySelector('#antonyms-heading')
   const typeOf = document.querySelector('#type-of')
     typeOf.style.display = 'none'
-  const typeOfHeading = document.querySelector('#type-of-heading')
   const hasTypes = document.querySelector('#has-types')
     hasTypes.style.display = 'none'
-  const hasTypesHeading = document.querySelector('#has-types-heading')
   const partOf = document.querySelector('#part-of')
     partOf.style.display = 'none'
-  const partOfHeading = document.querySelector('#part-of-heading')
   const hasParts = document.querySelector('#has-parts')
     hasParts.style.display = 'none'
-  const hasPartsHeading = document.querySelector('#has-parts-heading')
   const instanceOf = document.querySelector('#instance-of')
     instanceOf.style.display = 'none'
-  const instanceOfHeading = document.querySelector('#instance-of-heading')
   const hasInstances = document.querySelector('#has-instances')
     hasInstances.style.display = 'none'
-  const hasInstancesHeading = document.querySelector('#has-instances-heading')
   const similarTo = document.querySelector('#similar-to')
     similarTo.style.display = 'none'
-  const similarToHeading = document.querySelector('#similar-to-heading')
   const also = document.querySelector('#also')
     also.style.display = 'none'
-  const alsoHeading = document.querySelector('#also-heading')
   const entails = document.querySelector('#entails')
     entails.style.display = 'none'
-  const entailsHeading = document.querySelector('#entails-heading')
   const memberOf = document.querySelector('#member-of')
     memberOf.style.display = 'none'
-  const memberOfHeading = document.querySelector('#member-of-heading')
   const hasMembers = document.querySelector('#has-members')
     hasMembers.style.display = 'none'
-  const hasMembersHeading = document.querySelector('#has-members-heading')
   const substanceOf = document.querySelector('#substance-of')
     substanceOf.style.display = 'none'
-  const substanceOfHeading = document.querySelector('#substance-of-heading')
   const hasSubstances = document.querySelector('#has-substances')
     hasSubstances.style.display = 'none'
-  const hasSubstancesHeading = document.querySelector('#has-substances-heading')
   const inCategory = document.querySelector('#in-category')
     inCategory.style.display = 'none'
-  const inCategoryHeading = document.querySelector('#in-category-heading')
   const hasCategories = document.querySelector('#has-categories')
     hasCategories.style.display = 'none'
-  const hasCategoriesHeading = document.querySelector('#has-categories-heading')
   const usageOf = document.querySelector('#usage-of')
     usageOf.style.display = 'none'
-  const usageOfHeading = document.querySelector('#usage-of-heading')
   const hasUsages = document.querySelector('#has-usages')
     hasUsages.style.display = 'none'
-  const hasUsagesHeading = document.querySelector('#has-usages-heading')
   const inRegion = document.querySelector('#in-region')
     inRegion.style.display = 'none'
-  const inRegionHeading = document.querySelector('#in-region-heading')
   const regionOf = document.querySelector('#region-of')
     regionOf.style.display = 'none'
-  const regionOfHeading = document.querySelector('#region-of-heading')
   const pertainsTo = document.querySelector('#pertains-to')
     pertainsTo.style.display = 'none'
-  const pertainsToHeading = document.querySelector('#pertains-to-heading')
   const rhymes = document.querySelector('#rhymes')
     rhymes.style.display = 'none'
-  const rhymesHeading = document.querySelector('#rhymes-heading')
 const definitionsList = document.querySelector('#definitions')
 const noDefinitions = document.querySelector('#no-definitions')
   noDefinitions.style.display = ''
@@ -396,7 +373,6 @@ const related = async(input) => {
     if (data[i].synonyms) {
       noRelated.style.display = 'none'
       synonyms.style.display = ''
-      synonymsHeading.innerHTML = `Synonyms of "${input.toUpperCase()}"`
       for (let n=0; n < data[i].synonyms.length; n++) {
         const details = synonyms.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].synonyms[n]
@@ -405,7 +381,6 @@ const related = async(input) => {
     if (data[i].antonyms) {
       noRelated.style.display = 'none'
       antonyms.style.display = ''
-      antonymsHeading.innerHTML = `Antonyms of "${input.toUpperCase()}"`
       for (let n=0; n < data[i].antonyms.length; n++) {
         const details = antonyms.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].antonyms[n]
@@ -414,7 +389,6 @@ const related = async(input) => {
     if (data[i].typeOf) {
       noRelated.style.display = 'none'
       typeOf.style.display = ''
-      typeOfHeading.innerHTML = `Hypernyms of "${input.toUpperCase()}"`
       for (let n=0; n < data[i].typeOf.length; n++) {
         const details = typeOf.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].typeOf[n]
@@ -423,7 +397,6 @@ const related = async(input) => {
     if (data[i].hasTypes) {
       noRelated.style.display = 'none'
       hasTypes.style.display = ''
-      hasTypesHeading.innerHTML = `Hyponyms of "${input.toUpperCase()}"`
       for (let n=0; n < data[i].hasTypes.length; n++) {
         const details = hasTypes.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].hasTypes[n]
@@ -432,7 +405,6 @@ const related = async(input) => {
     if (data[i].partOf) {
       noRelated.style.display = 'none'
       partOfHeading.style.display = ''
-      partOf.innerHTML = `Holonyms of "${input.toUpperCase()}"`
       for (let n=0; n < data[i].partOf.length; n++) {
         const details = partOf.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].partOf[n]
@@ -441,7 +413,6 @@ const related = async(input) => {
     if (data[i].hasParts) {
       noRelated.style.display = 'none'
       hasParts.style.display = ''
-      hasPartsHeading.innerHTML = `Meronyms of "${input.toUpperCase()}"`
       for (let n=0; n < data[i].hasParts.length; n++) {
         const details = hasParts.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].hasParts[n]
@@ -450,7 +421,6 @@ const related = async(input) => {
     if (data[i].instanceOf) {
       noRelated.style.display = 'none'
       instanceOf.style.display = ''
-      instanceOfHeading.innerHTML = `"${input.toUpperCase()}" is an example of:`
       for (let n=0; n < data[i].instanceOf.length; n++) {
         const details = instanceOf.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].instanceOf[n]
@@ -459,7 +429,6 @@ const related = async(input) => {
     if (data[i].hasInstances) {
       noRelated.style.display = 'none'
       hasInstances.style.display = ''
-      hasInstancesHeading.innerHTML = `Examples of "${input.toUpperCase()}"`
       for (let n=0; n < data[i].hasInstances.length; n++) {
         const details = hasInstances.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].hasInstances[n]
@@ -468,7 +437,6 @@ const related = async(input) => {
     if (data[i].similarTo) {
       noRelated.style.display = 'none'
       similarTo.style.display = ''
-      similarToHeading.innerHTML = `"${input.toUpperCase()}" is similar to:`
       for (let n=0; n < data[i].similarTo.length; n++) {
         const details = similarTo.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].similarTo[n]
@@ -477,7 +445,6 @@ const related = async(input) => {
     if (data[i].also) {
       noRelated.style.display = 'none'
       also.style.display = ''
-      alsoHeading.innerHTML = `Phrases to which "${input.toUpperCase()}" belongs`
       for (let n=0; n < data[i].also.length; n++) {
         const details = also.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].also[n]
@@ -486,7 +453,6 @@ const related = async(input) => {
     if (data[i].entails) {
       noRelated.style.display = 'none'
       entails.style.display = ''
-      entailsHeading.innerHTML = `Words implied by "${input.toUpperCase()}"`
       for (let n=0; n < data[i].entails.length; n++) {
         const details = entails.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].entails[n]
@@ -495,7 +461,6 @@ const related = async(input) => {
     if (data[i].memberOf) {
       noRelated.style.display = 'none'
       memberOf.style.display = ''
-      memberOfHeading.innerHTML = `"${input.toUpperCase()}" is a member of:`
       for (let n=0; n < data[i].memberOf.length; n++) {
         const details = memberOf.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].memberOf[n]
@@ -504,7 +469,6 @@ const related = async(input) => {
     if (data[i].hasMembers) {
       noRelated.style.display = 'none'
       hasMembers.style.display = ''
-      hasMembersHeading.innerHTML = `"${input.toUpperCase()}" has the following members:`
       for (let n=0; n < data[i].hasMembers.length; n++) {
         const details = hasMembers.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].hasMembers[n]
@@ -513,7 +477,6 @@ const related = async(input) => {
     if (data[i].substanceOf) {
       noRelated.style.display = 'none'
       substanceOf.style.display = ''
-      substanceOfHeading.innerHTML = `"${input.toUpperCase()}" is a substance of:`
       for (let n=0; n < data[i].substanceOf.length; n++) {
         const details = substanceOf.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].substanceOf[n]
@@ -522,7 +485,6 @@ const related = async(input) => {
     if (data[i].hasSubstances) {
       noRelated.style.display = 'none'
       hasSubstances.style.display = ''
-      hasSubstancesHeading.innerHTML = `Substances that are part of "${input.toUpperCase()}":`
       for (let n=0; n < data[i].hasSubstances.length; n++) {
         const details = hasSubstances.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].hasSubstances[n]
@@ -531,7 +493,6 @@ const related = async(input) => {
     if (data[i].inCategory) {
       noRelated.style.display = 'none'
       inCategory.style.display = ''
-      inCategoryHeading.innerHTML = `"${input.toUpperCase()}" is a category of:`
       for (let n=0; n < data[i].inCategory.length; n++) {
         const details = inCategory.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].inCategory[n]
@@ -540,7 +501,6 @@ const related = async(input) => {
     if (data[i].hasCategories) {
       noRelated.style.display = 'none'
       hasCategories.style.display = ''
-      hasCategoriesHeading.innerHTML = `Categories of "${input.toUpperCase()}":`
       for (let n=0; n < data[i].hasCategories.length; n++) {
         const details = hasCategories.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].hasCategories[n]
@@ -549,7 +509,6 @@ const related = async(input) => {
     if (data[i].usageOf) {
       noRelated.style.display = 'none'
       usageOf.style.display = ''
-      usageOfHeading.innerHTML = `"${input.toUpperCase()}" is a domain usage of:`
       for (let n=0; n < data[i].usageOf.length; n++) {
         const details = usageOf.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].usageOf[n]
@@ -558,7 +517,6 @@ const related = async(input) => {
     if (data[i].hasUsages) {
       noRelated.style.display = 'none'
       hasUsages.style.display = ''
-      hasUsagesHeading.innerHTML = `"${input.toUpperCase()}" has the following usages:`
       for (let n=0; n < data[i].hasUsages.length; n++) {
         const details = hasUsages.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].hasUsages[n]
@@ -567,7 +525,6 @@ const related = async(input) => {
     if (data[i].inRegion) {
       noRelated.style.display = 'none'
       inRegion.style.display = ''
-      inRegionHeading.innerHTML = `"${input.toUpperCase()}" is used in these regions:`
       for (let n=0; n < data[i].inRegion.length; n++) {
         const details = inRegion.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].inRegion[n]
@@ -576,7 +533,6 @@ const related = async(input) => {
     if (data[i].regionOf) {
       noRelated.style.display = 'none'
       regionOf.style.display = ''
-      regionOfHeading.innerHTML = `"${input.toUpperCase()}" is a region where these words are used:`
       for (let n=0; n < data[i].regionOf.length; n++) {
         const details = regionOf.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].regionOf[n]
@@ -585,7 +541,6 @@ const related = async(input) => {
     if (data[i].pertainsTo) {
       noRelated.style.display = 'none'
       pertainsTo.style.display = ''
-      pertainsToHeading.innerHTML = `"${input.toUpperCase()}" is relevant to these words`
       for (let n=0; n < data[i].pertainsTo.length; n++) {
         const details = pertainsTo.appendChild(document.createElement('dd'))
         details.innerHTML += data[i].pertainsTo[n]
@@ -605,7 +560,6 @@ const related = async(input) => {
   if (rhymesData) {
     noRelated.style.display = 'none'
     rhymes.style.display = ''
-    rhymesHeading.innerHTML = `${input.toUpperCase()} rhymes with:`
     for (let i=0; i < rhymesData.length; i++) {
       const details = rhymes.appendChild(document.createElement('dd'))
       details.innerHTML += rhymesData[i]
@@ -631,7 +585,7 @@ const random = async() => {
   randomDefinition.innerHTML = definitionResponse['0'].definition
 }
 
-// random()
+random()
 
 // Event Listeners
 
@@ -651,7 +605,7 @@ submitButton.addEventListener('click', () => {
   fnDivider.style.display = ''
   fn.style.display = ''
   
-  // random()
+  random()
 
   // step 1. check if valid scrabble word
   validScrabbleWord(input)
@@ -674,6 +628,29 @@ submitButton.addEventListener('click', () => {
   definitions(input)
   // step 9. related words
   noRelated.innerHTML = `There are no words related to "${input}"`
+  synonyms.innerHTML = `<summary id="synonyms-heading">Synonyms of "${input.toUpperCase()}"</summary>`
+  antonyms.innerHTML = `<summary id="antonyms-heading">Antonyms of "${input.toUpperCase()}"</summary>`
+  typeOf.innerHTML = `<summary id="type-of-heading">Hypernyms of "${input.toUpperCase()}"</summary>`
+  hasTypes.innerHTML = `<summary id="has-types-heading">Hyponyms of "${input.toUpperCase()}"</summary>`
+  partOf.innerHTML = `<summary id="part-of-heading">Holonyms of "${input.toUpperCase()}"</summary>`
+  hasParts.innerHTML = `<summary id="has-parts-heading">Meronyms of "${input.toUpperCase()}"</summary>`
+  instanceOf.innerHTML = `<summary id="instance-of-heading">"${input.toUpperCase()}" is an example of:</summary>`
+  hasInstances.innerHTML = `<summary id="has-instances-heading">Examples of "${input.toUpperCase()}"</summary>`
+  similarTo.innerHTML = `<summary id="similar-to-heading">"${input.toUpperCase()}" is similar to:</summary>`
+  also.innerHTML = `<summary id="also-heading">Phrases to which "${input.toUpperCase()}" belongs</summary>`
+  entails.innerHTML = `<summary id="entails-heading">Words implied by "${input.toUpperCase()}"</summary>`
+  memberOf.innerHTML = `<summary id="member-of-heading">"${input.toUpperCase()}" is a member of:</summary>`
+  hasMembers.innerHTML = `<summary id="has-members-heading">"${input.toUpperCase()}" has the following members:</summary><`
+  substanceOf.innerHTML = `<summary id="substance-of-heading">"${input.toUpperCase()}" is a substance of:</summary>`
+  hasSubstances.innerHTML = `<summary id="has-substances-heading">Substances that are part of "${input.toUpperCase()}":</summary>`
+  inCategory.innerHTML = `<summary id="in-category-heading">"${input.toUpperCase()}" is a category of:</summary>`
+  hasCategories.innerHTML = `<summary id="has-categories-heading">Categories of "${input.toUpperCase()}":</summary>`
+  usageOf.innerHTML = `<summary id="usage-of-heading">"${input.toUpperCase()}" is a domain usage of:</summary>`
+  hasUsages.innerHTML = `<summary id="has-usages-heading">"${input.toUpperCase()}" has the following usages:</summary>`
+  inRegion.innerHTML = `<summary id="in-region-heading">"${input.toUpperCase()}" is used in these regions:</summary>`
+  regionOf.innerHTML = `<summary id="region-of-heading">"${input.toUpperCase()}" is a region where these words are used:</summary>`
+  pertainsTo.innerHTML = `<summary id="region-of-heading">"${input.toUpperCase()}" is relevant to these words</summary>`
+  rhymes.innerHTML = `<summary id="rhymes-heading">${input.toUpperCase()} rhymes with:</summary>`
   synonyms.style.display = 'none'
   antonyms.style.display = 'none'
   rhymes.style.display = 'none'
@@ -702,6 +679,7 @@ submitButton.addEventListener('click', () => {
   etymologiesData.innerHTML = "No data available"
   etymologies(input)
   // step 11. crossword
+  removeChildNodes(crosswords)
   crosswordHeading.innerHTML = `Crossword Clues Related to ${input.toUpperCase().replace(/ /g, '')}`
   crossword(input)
 })
@@ -729,7 +707,7 @@ randomWord.addEventListener('click', () => {
   fnDivider.style.display = ''
   fn.style.display = ''
   
-  // random()
+  random()
 
   // step 1. check if valid scrabble word
   validScrabbleWord(input)
@@ -752,6 +730,29 @@ randomWord.addEventListener('click', () => {
   definitions(input)
   // step 9. related words
   noRelated.innerHTML = `There are no words related to "${input}"`
+  synonyms.innerHTML = `<summary id="synonyms-heading">Synonyms of "${input.toUpperCase()}"</summary>`
+  antonyms.innerHTML = `<summary id="antonyms-heading">Antonyms of "${input.toUpperCase()}"</summary>`
+  typeOf.innerHTML = `<summary id="type-of-heading">Hypernyms of "${input.toUpperCase()}"</summary>`
+  hasTypes.innerHTML = `<summary id="has-types-heading">Hyponyms of "${input.toUpperCase()}"</summary>`
+  partOf.innerHTML = `<summary id="part-of-heading">Holonyms of "${input.toUpperCase()}"</summary>`
+  hasParts.innerHTML = `<summary id="has-parts-heading">Meronyms of "${input.toUpperCase()}"</summary>`
+  instanceOf.innerHTML = `<summary id="instance-of-heading">"${input.toUpperCase()}" is an example of:</summary>`
+  hasInstances.innerHTML = `<summary id="has-instances-heading">Examples of "${input.toUpperCase()}"</summary>`
+  similarTo.innerHTML = `<summary id="similar-to-heading">"${input.toUpperCase()}" is similar to:</summary>`
+  also.innerHTML = `<summary id="also-heading">Phrases to which "${input.toUpperCase()}" belongs</summary>`
+  entails.innerHTML = `<summary id="entails-heading">Words implied by "${input.toUpperCase()}"</summary>`
+  memberOf.innerHTML = `<summary id="member-of-heading">"${input.toUpperCase()}" is a member of:</summary>`
+  hasMembers.innerHTML = `<summary id="has-members-heading">"${input.toUpperCase()}" has the following members:</summary><`
+  substanceOf.innerHTML = `<summary id="substance-of-heading">"${input.toUpperCase()}" is a substance of:</summary>`
+  hasSubstances.innerHTML = `<summary id="has-substances-heading">Substances that are part of "${input.toUpperCase()}":</summary>`
+  inCategory.innerHTML = `<summary id="in-category-heading">"${input.toUpperCase()}" is a category of:</summary>`
+  hasCategories.innerHTML = `<summary id="has-categories-heading">Categories of "${input.toUpperCase()}":</summary>`
+  usageOf.innerHTML = `<summary id="usage-of-heading">"${input.toUpperCase()}" is a domain usage of:</summary>`
+  hasUsages.innerHTML = `<summary id="has-usages-heading">"${input.toUpperCase()}" has the following usages:</summary>`
+  inRegion.innerHTML = `<summary id="in-region-heading">"${input.toUpperCase()}" is used in these regions:</summary>`
+  regionOf.innerHTML = `<summary id="region-of-heading">"${input.toUpperCase()}" is a region where these words are used:</summary>`
+  pertainsTo.innerHTML = `<summary id="region-of-heading">"${input.toUpperCase()}" is relevant to these words</summary>`
+  rhymes.innerHTML = `<summary id="rhymes-heading">${input.toUpperCase()} rhymes with:</summary>`
   synonyms.style.display = 'none'
   antonyms.style.display = 'none'
   rhymes.style.display = 'none'
@@ -781,6 +782,7 @@ randomWord.addEventListener('click', () => {
   etymologies(input)
 
   // step 11. crossword
+  removeChildNodes(crosswords)
   crosswordHeading.innerHTML = `Crossword Clues Related to ${input.toUpperCase().replace(/ /g, '')}`
   crossword(input)
 })
@@ -802,7 +804,7 @@ for (let i=0; i < highScorers.length; i++) {
   fnDivider.style.display = ''
   fn.style.display = ''
   
-  // random()
+  random()
 
   // step 1. check if valid scrabble word
   validScrabbleWord(input)
@@ -825,6 +827,29 @@ for (let i=0; i < highScorers.length; i++) {
   definitions(input)
   // step 9. related words
   noRelated.innerHTML = `There are no words related to "${input}"`
+  synonyms.innerHTML = `<summary id="synonyms-heading">Synonyms of "${input.toUpperCase()}"</summary>`
+  antonyms.innerHTML = `<summary id="antonyms-heading">Antonyms of "${input.toUpperCase()}"</summary>`
+  typeOf.innerHTML = `<summary id="type-of-heading">Hypernyms of "${input.toUpperCase()}"</summary>`
+  hasTypes.innerHTML = `<summary id="has-types-heading">Hyponyms of "${input.toUpperCase()}"</summary>`
+  partOf.innerHTML = `<summary id="part-of-heading">Holonyms of "${input.toUpperCase()}"</summary>`
+  hasParts.innerHTML = `<summary id="has-parts-heading">Meronyms of "${input.toUpperCase()}"</summary>`
+  instanceOf.innerHTML = `<summary id="instance-of-heading">"${input.toUpperCase()}" is an example of:</summary>`
+  hasInstances.innerHTML = `<summary id="has-instances-heading">Examples of "${input.toUpperCase()}"</summary>`
+  similarTo.innerHTML = `<summary id="similar-to-heading">"${input.toUpperCase()}" is similar to:</summary>`
+  also.innerHTML = `<summary id="also-heading">Phrases to which "${input.toUpperCase()}" belongs</summary>`
+  entails.innerHTML = `<summary id="entails-heading">Words implied by "${input.toUpperCase()}"</summary>`
+  memberOf.innerHTML = `<summary id="member-of-heading">"${input.toUpperCase()}" is a member of:</summary>`
+  hasMembers.innerHTML = `<summary id="has-members-heading">"${input.toUpperCase()}" has the following members:</summary><`
+  substanceOf.innerHTML = `<summary id="substance-of-heading">"${input.toUpperCase()}" is a substance of:</summary>`
+  hasSubstances.innerHTML = `<summary id="has-substances-heading">Substances that are part of "${input.toUpperCase()}":</summary>`
+  inCategory.innerHTML = `<summary id="in-category-heading">"${input.toUpperCase()}" is a category of:</summary>`
+  hasCategories.innerHTML = `<summary id="has-categories-heading">Categories of "${input.toUpperCase()}":</summary>`
+  usageOf.innerHTML = `<summary id="usage-of-heading">"${input.toUpperCase()}" is a domain usage of:</summary>`
+  hasUsages.innerHTML = `<summary id="has-usages-heading">"${input.toUpperCase()}" has the following usages:</summary>`
+  inRegion.innerHTML = `<summary id="in-region-heading">"${input.toUpperCase()}" is used in these regions:</summary>`
+  regionOf.innerHTML = `<summary id="region-of-heading">"${input.toUpperCase()}" is a region where these words are used:</summary>`
+  pertainsTo.innerHTML = `<summary id="region-of-heading">"${input.toUpperCase()}" is relevant to these words</summary>`
+  rhymes.innerHTML = `<summary id="rhymes-heading">${input.toUpperCase()} rhymes with:</summary>`
   synonyms.style.display = 'none'
   antonyms.style.display = 'none'
   rhymes.style.display = 'none'
@@ -854,6 +879,7 @@ for (let i=0; i < highScorers.length; i++) {
   etymologies(input)
 
   // step 11. crossword
+  removeChildNodes(crosswords)
   crosswordHeading.innerHTML = `Crossword Clues Related to ${input.toUpperCase().replace(/ /g, '')}`
   crossword(input)
   })
